@@ -1,3 +1,27 @@
 <div class="search-container">
+<!--
   <button class="search-button">Ruumiotsing <img src="/arrow-down.png" alt="downward arrow" class="icon"></button>
+-->
+  <form class="search-form">
+    <label for="nrpeople">Inimeste arv</label>
+    <input type="text" name="nrpeople"  id="nrpeople">
+    <label for="beginning_date">Alguskuupäev</label>
+    <input type="date" id="beginning_date" name="beginning_date" >
+    <label for="end_date">Lõpukuupäev</label>
+    <input type="date" id="end_date" name="end_date" >
+    <label for="keyword">Otsingusõna</label>
+    <input type="text" name="keyword"  id="keyword">
+    <label for="floor">Korrus</label>
+    <select name="floor" id="floor">
+      <option value="first_floor">1</option>
+      <option value="second_floor">2</option>
+      <option value="third_floor">3</option>
+      <option value="fourth_floor">4</option>
+      <option value="fifth_floor">5</option>
+      <option value="sixth_floor">6</option>
+      <option value="seventh_floor">7</option>
+      <option value="eighth_floor">8</option>
+    </select>
+    <button>Otsi ruume</button>
+  </form>
 </div>
