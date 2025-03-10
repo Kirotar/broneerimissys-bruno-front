@@ -2,15 +2,18 @@
   background-color: #F4D5A4;
   display: flex;
   padding: 40px;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-
 }
+
 .infobar-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   overflow: hidden;
+  margin-top: 40px;
 }
 
 .infobar-image {
@@ -18,6 +21,107 @@
   max-height: 100%;
 }
 
-h2 {
+h2, h3, p {
   color: #090688;
+}
+
+.infobar-text {
+  text-align: center;
+}
+
+.infobar-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  padding: 16px;
+}
+
+.infobar-icons img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.infobar-icons img {
+  width: 100px;
+  height: auto;
+  flex: 1 1 100px;
+  max-width: 120px;
+}
+
+.info-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.info-item reverse {
+  flex-direction: row-reverse;
+}
+
+.info-item img {
+  width: 45%;
+  height: auto;
+}
+
+.info-item .text {
+  width: 55%;
+}
+
+.info-item h3 {
+  margin-top: 0;
+}
+
+.info-item button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border-width: 1px;
+  color: #090688;
+  opacity: 100%;
+  cursor: pointer;
+  border-radius: 60px;
+  border-color: #090688;
+}
+
+.info-item button:hover {
+  background-color: #090688;
+  color: white;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .info-item {
+    flex-direction: column;
+  }
+
+  .info-item.reverse {
+    flex-direction: column;
+  }
+
+  .info-item img,
+  .info-item .text {
+    width: 100%;
+  }
+
+  .infobar-icons {
+    gap: 8px;
+  }
+
+  .infobar-icons img {
+    width: 80px;
+    flex: 1 1 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .infobar-icons img {
+    width: 60px;
+    flex: 1 1 60px;
+  }
 }
