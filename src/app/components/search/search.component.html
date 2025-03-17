@@ -1,27 +1,74 @@
 <div class="search-container">
-<!--
-  <button class="search-button">Ruumiotsing <img src="/arrow-down.png" alt="downward arrow" class="icon"></button>
--->
-  <form class="search-form">
+  <form class="search-form" (ngSubmit)="onSubmit()">
     <label for="nrpeople">Inimeste arv</label>
-    <input type="text" name="nrpeople"  id="nrpeople">
+    <input type="number" name="nrpeople" id="nrpeople" [(ngModel)]="searchData.minCapacity">
     <label for="beginning_date">Alguskuupäev</label>
-    <input type="date" id="beginning_date" name="beginning_date" >
+    <input type="date" id="beginning_date" name="beginning_date" [(ngModel)]="searchData.startDateTime">
     <label for="end_date">Lõpukuupäev</label>
-    <input type="date" id="end_date" name="end_date" >
+    <input type="date" id="end_date" name="end_date" [(ngModel)]="searchData.endDateTime">
     <label for="keyword">Otsingusõna</label>
-    <input type="text" name="keyword"  id="keyword">
+    <input type="text" name="keyword" id="keyword" [(ngModel)]="searchData.keywords">
     <label for="floor">Korrus</label>
-    <select name="floor" id="floor">
-      <option value="first_floor">1</option>
-      <option value="second_floor">2</option>
-      <option value="third_floor">3</option>
-      <option value="fourth_floor">4</option>
-      <option value="fifth_floor">5</option>
-      <option value="sixth_floor">6</option>
-      <option value="seventh_floor">7</option>
-      <option value="eighth_floor">8</option>
+    <select name="floor" id="floor" [(ngModel)]="searchData.floor">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
     </select>
-    <button>Otsi ruume</button>
+    <button type="submit">Otsi ruume</button>
   </form>
 </div>
+
+@let rooms = rooms$ | async;
+
+@if (isLoading) {
+  <div>Laen...</div>
+}
+
+@if (error) {
+  <div>{{ error }}</div>
+}
+
+@if (rooms) {
+  @if (rooms.length > 0) {
+    <table class="filtered-rooms-table">
+      <thead>
+      <tr>
+        <th>Ruumi nimi</th>
+        <th>Ruumi number</th>
+        <th>Mahutavus</th>
+        <th>Korrus</th>
+        <th>Vahendid</th>
+        <th>Hind</th>
+        <th>Märksõnad</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (room of rooms; track room.id) {
+          <tr>
+            <td>{{ room.name }}</td>
+            <td>{{ room.number }}</td>
+            <td>{{ room.capacity }}</td>
+            <td>{{ room.floor }}</td>
+            <td>{{ room.facilities }}</td>
+            <td>{{ room.price }}</td>
+            <td>{{ room.keywords }}</td>
+            <td>
+              <button>Broneeri</button>
+            </td> <!--(click)="bookRoom(room)-->
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>Ühtegi ruumi ei leitud vastavalt otsingule.</p>
+  }
+} @else {
+  <p>Otsingutulemust ei ole veel.</p>
+}
+
