@@ -5,11 +5,11 @@ import {environment} from '../../environments/environment';
 
 export interface Room {
   id: number;
-  name: string;
-  number: string;
+  roomName: string;
+  roomNumber: string;
   capacity: number;
   floor: string;
-  facilities: string;
+  equipment: string;
   price: string;
   keywords: string;
 }
