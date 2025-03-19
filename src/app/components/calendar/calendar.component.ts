@@ -1,9 +1,9 @@
 // calendar.component.ts
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
-import {Observable, of} from 'rxjs';
+import {Observable, of, switchMap} from 'rxjs';
 import {Room} from '../search/search.service';
 import {environment} from '../../environments/environment';
 
@@ -40,11 +40,12 @@ export class CalendarComponent implements OnInit {
       this.hours.push(i);
     }
   }
+
   ngOnInit() {
     this.fetchRooms();
   }
 
-  loadRoomAvailability(){
+  loadRoomAvailability() {
     // For each room and timeslot combination
     console.log("combining")
 
@@ -61,7 +62,7 @@ export class CalendarComponent implements OnInit {
           endTime: endTime
         };
         this.isRoomBookable(room.id).subscribe(status => {
-          this.timeSlotAvailability [key]= 'disabled';
+          this.timeSlotAvailability [key] = 'disabled';
         })
         this.isSlotAvailable(bookingSearch).subscribe(status => {
           this.timeSlotAvailability[key] = status;
@@ -70,13 +71,13 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  isRoomBookable(roomId: number): Observable<boolean>{
+  isRoomBookable(roomId: number): Observable<boolean> {
     console.log("Checking: is bookable")
     return this.http.get<boolean>(`${this.apiUrl}rooms/is-bookable/${roomId}`)
       .pipe(
         catchError(error => {
           console.error('Error checking if room can be booked:', error);
-          return of (false);
+          return of(false);
         })
       );
   }
@@ -86,7 +87,7 @@ export class CalendarComponent implements OnInit {
     this.loadRoomAvailability();
   }
 
-  createDateTimeString(date: Date,hour: number): string {
+  createDateTimeString(date: Date, hour: number): string {
     const newDate = new Date(date);
     newDate.setHours(hour, 0, 0, 0);
     return newDate.toISOString();
@@ -101,7 +102,7 @@ export class CalendarComponent implements OnInit {
   fetchRooms() {
     this.loading = true;
     this.error = '';
-console.log("fetching rooms")
+    console.log("fetching rooms")
 
     this.http.get<Room[]>(`${this.apiUrl}rooms/all`)
       .pipe(
@@ -153,21 +154,28 @@ console.log("fetching rooms")
 
   isSlotAvailable(bookingSearch: BookingSearch): Observable<string> {
     console.log("searching availability")
+    return this.isRoomBookable(bookingSearch.roomId).pipe(
+      switchMap(isBookable => {
+        if (!isBookable) {
+          return of('disabled');
+        }
 
-    let params = new HttpParams();
-    params = params.set('roomId', bookingSearch.roomId)
-    params = params.set('startDateTime', bookingSearch.startTime)
-    params = params.set('endDateTime', bookingSearch.endTime)
+        let params = new HttpParams();
+        params = params.set('roomId', bookingSearch.roomId)
+        params = params.set('startDateTime', bookingSearch.startTime)
+        params = params.set('endDateTime', bookingSearch.endTime)
 
-      return this.http.get<boolean>(`${this.apiUrl}booking/get-room-availability`, {params})
-        .pipe(
+        return this.http.get<boolean>(`${this.apiUrl}booking/get-room-availability`, {params}).pipe(
           map(available => available ? 'available' : 'booked'),
           catchError(error => {
             console.error('Error checking room availability:', error);
             return of('booked');
           })
         );
+      })
+    );
   }
+
 
   bookSlot(roomId: number, hour: number) {
     console.log(`Booking room ${roomId} at ${hour}:00`);
