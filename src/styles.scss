@@ -62,22 +62,17 @@ header {
 }
 
 .book-button {
-  background: white;
+  background-color: #F4D5A4;
   color: #090688;
-  padding: 10px 15px;
-  border-style: solid;
-  border-color: #090688;
-  font-size: 16px;
-  border-radius: 25px;
+  border: none;
+  padding: 10px 25px;
+  margin: 10px;
+  border-radius: 45px;
   cursor: pointer;
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 10px;
 }
 
 .book-button:hover {
-  background: #F4D5A4;
+  background: #F4633A;
 }
 
 /* Floor buttons: */
