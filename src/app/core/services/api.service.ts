@@ -22,7 +22,12 @@ export class ApiService {
   }
 
 searchRoom() {
-    return this.http.get(`${this.apiUrl}rooms/search/`);
+    return this.http.get(`${this.apiUrl}rooms/search/`).pipe(
+      catchError(error => {
+        console.error('Error ruumide otsimisel:', error);
+        return throwError(() => new Error('Ei saanud ruume laadida. Proovi hiljem uuesti.'));
+      })
+    );
   }
 
 }
