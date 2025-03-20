@@ -1,11 +1,41 @@
 import { Component } from '@angular/core';
+import {NgForOf} from '@angular/common';
+import {Room} from '../search/search.service';
+import { ApiService} from '../../core/services/api.service';
 
 @Component({
   selector: 'app-rooms',
-  imports: [],
+  imports: [
+    NgForOf
+  ],
   templateUrl: './rooms.component.html',
-  styleUrl: './rooms.component.scss'
+  styleUrls: ['./rooms.component.scss', '../styles.scss']
 })
 export class RoomsComponent {
+  selectedFloor: number = 1;
+  rooms: Room[] = [];
+  errorMessage: string = '';
 
+
+  constructor(private apiService: ApiService) {
+  }
+
+  ngOnInit() {
+    this.fetchRooms();
+  }
+
+  fetchRooms(){
+    this.apiService.getRooms().subscribe({
+      next: (data:any) => this.rooms = data,
+          error: (error) => this.errorMessage = error.message
+    });
+  }
+
+  setFloor(floor: number) {
+    this.selectedFloor = floor;
+  }
+
+  get filteredRooms() {
+    return this.rooms.filter(room => room.floor === this.selectedFloor);
+  }
 }
