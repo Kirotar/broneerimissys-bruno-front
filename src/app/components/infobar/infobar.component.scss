@@ -1,3 +1,4 @@
+/* The infobar with icons */
 .info-container {
   background-color: #F4D5A4;
   display: flex;
@@ -16,17 +17,8 @@
   margin-top: 40px;
 }
 
-.infobar-image {
-  max-width: 100%;
-  max-height: 100%;
-}
-
 h2, h3, p {
   color: #090688;
-}
-
-.infobar-text {
-  text-align: center;
 }
 
 .infobar-icons {
@@ -49,37 +41,56 @@ h2, h3, p {
   max-width: 120px;
 }
 
-.info-text-container {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+/* The Edu and event centre */
+
+.info-item .text {
+  margin: 20px;
+  padding: 30px;
+}
+
+.centres-info-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 0;
+  width: 100%;
+  margin: auto;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 24px;
-}
-
-.info-item reverse {
-  flex-direction: row-reverse;
+  position: relative;
 }
 
 .info-item img {
-  width: 45%;
+  width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
-.info-item .text {
-  width: 55%;
+.info-item:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
 }
 
-.info-item h3 {
-  margin-top: 0;
+.info-item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.info-item:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.info-item:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .info-item button {
-  margin-top: 16px;
+  margin-top: 10px;
   padding: 8px 16px;
   border-width: 1px;
   color: #090688;
@@ -96,18 +107,6 @@ h2, h3, p {
 
 /* Responsiveness */
 @media (max-width: 768px) {
-  .info-item {
-    flex-direction: column;
-  }
-
-  .info-item.reverse {
-    flex-direction: column;
-  }
-
-  .info-item img,
-  .info-item .text {
-    width: 100%;
-  }
 
   .infobar-icons {
     gap: 8px;
@@ -125,3 +124,4 @@ h2, h3, p {
     flex: 1 1 60px;
   }
 }
+
