@@ -8,7 +8,7 @@ export interface Room {
   roomName: string;
   roomNumber: string;
   capacity: number;
-  floor: string;
+  floor: number;
   equipment: string;
   price: string;
   keywords: string;

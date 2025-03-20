@@ -1,3 +1,58 @@
-<div class="calendar-placeholder-container">
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button (click)="goToPreviousDay()" [disabled]="isCurrentDateToday()">
+      &lt;
+    </button>
+    <h2>{{ formatDate(currentDate) }}</h2>
+    <button (click)="goToNextDay()" [disabled]="isMaxDate()">
+       &gt;
+    </button>
+  </div>
 
-</div>
+  <div class="floor-buttons">
+    <button *ngFor="let floor of [1,2,3,4,5,6,7,8]"
+            (click)="setFloor(floor)"
+            [class.active]="selectedFloor === floor">
+      {{ floor }}. korrus
+    </button>
+  </div>
+
+    <div class="grid-row" *ngFor="let room of filteredRooms">
+      <div class="grid-cell room-name">{{ room.roomName }}</div>
+      <div
+        class="grid-cell"
+        *ngFor="let hour of hours"
+      >
+        <button class="grid-cell button time-slot"
+                [ngClass]="{
+              'available': getSlotAvailability(room.id, hour) === 'available',
+              'booked': getSlotAvailability(room.id, hour) === 'booked',
+              'disabled': getSlotAvailability(room.id, hour) === 'disabled'
+            }"
+                [disabled]="getSlotAvailability(room.id, hour) === 'disabled' "
+                (click)="getSlotAvailability(room.id, hour) === 'available' && bookSlot(room.id, hour)"
+        >{{ hour }} </button>
+      </div>
+    </div>
+  <button class="book-button">Broneeri</button>
+  </div>
+
+
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading">Laen ruume...</div>
+  </div>
+
+
+  <div class="error-container" *ngIf="error">
+    <div class="error">{{ error }}</div>
+    <button (click)="fetchRooms()" class="retry-button">Retry</button>
+  </div>
+
+
+  <div class="no-rooms" *ngIf="!loading && !error && rooms.length === 0">
+    Ühtegi ruumi pole saadaval.
+  </div>
+
+
+<!--
+-->
