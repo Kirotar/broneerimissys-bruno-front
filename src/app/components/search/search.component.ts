@@ -9,7 +9,7 @@ import {FormsModule} from '@angular/forms';
   standalone: true,
   imports: [AsyncPipe, FormsModule, CommonModule],
   templateUrl: './search.component.html',
-  styleUrl: './search.component.scss'
+  styleUrls: ['./search.component.scss', '../../../styles.scss']
 })
 export class SearchComponent {
   private searchSubject = new BehaviorSubject<RoomSearch | null>(null);

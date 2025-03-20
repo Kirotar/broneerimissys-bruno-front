@@ -18,7 +18,7 @@ export interface BookingSearch {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss', '../styles.scss']
 })
 export class CalendarComponent implements OnInit {
   rooms: Room[] = [];
