@@ -3,7 +3,7 @@
     <button (click)="goToPreviousDay()" [disabled]="isCurrentDateToday()">
       &lt;
     </button>
-    <h2>{{ formatDate(currentDate) }}</h2>
+    <h2>{{ formatDate(currentDate) | titlecase}}</h2>
     <button (click)="goToNextDay()" [disabled]="isMaxDate()">
        &gt;
     </button>
@@ -53,6 +53,3 @@
     Ühtegi ruumi pole saadaval.
   </div>
 
-
-<!--
--->
