@@ -6,8 +6,6 @@
     <input type="date" id="beginning_date" name="beginning_date" [(ngModel)]="searchData.startDateTime">
     <label for="end_date">Lõpukuupäev</label>
     <input type="date" id="end_date" name="end_date" [(ngModel)]="searchData.endDateTime">
-    <label for="keyword">Otsingusõna</label>
-    <input type="text" name="keyword" id="keyword" [(ngModel)]="searchData.keywords">
     <label for="floor">Korrus</label>
     <select name="floor" id="floor" [(ngModel)]="searchData.floor">
       <option value="1">1</option>
@@ -19,7 +17,9 @@
       <option value="7">7</option>
       <option value="8">8</option>
     </select>
-    <button type="submit">Otsi ruume</button>
+    <label for="keyword"></label>
+    <input type="text" name="keyword" id="keyword" [(ngModel)]="searchData.keywords" placeholder="Otsingusõna">
+    <button type="submit" class="search-button">Otsi ruume</button>
   </form>
 </div>
 
