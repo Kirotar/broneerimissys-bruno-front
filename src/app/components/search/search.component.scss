@@ -9,12 +9,17 @@
   margin: 40px auto;
 }
 
+h2 {
+  color: #090688;
+}
+
 .search-form {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   align-items: center;
   width: 100%;
+  color: #090688;
 }
 
 .search-form label {
@@ -26,7 +31,7 @@
 .search-form input,
 .search-form select {
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #090688;
   background: transparent;
   padding: 5px;
   font-size: 16px;
@@ -35,7 +40,7 @@
 }
 
 .search-form input::placeholder {
-  color: grey;
+  color: #090688;
   opacity: 0.6;
 }
 
@@ -98,6 +103,7 @@
   border: 1px solid #ddd;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
+  color: #090688;
 }
 
 .room-card h3 {
@@ -112,10 +118,10 @@
 
 .book-button {
   background: white;
-  color: black;
+  color: #090688;
   padding: 10px 15px;
   border-style: solid;
-  border-color: black;
+  border-color: #090688;
   font-size: 16px;
   border-radius: 25px;
   cursor: pointer;
