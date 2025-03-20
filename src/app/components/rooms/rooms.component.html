@@ -1,15 +1,18 @@
 <div class="rooms-container">
   <div class="floor-buttons">
-    <button *ngFor="let floor of [1,2,3,4,5,6,7,8]"
-            (click)="setFloor(floor)"
+    @for(floor of [1,2,3,4,5,6,7,8]; track floor){
+    <button (click)="setFloor(floor)"
             [class.active]="selectedFloor === floor" >
       {{ floor }}. korrus <i class="arrow down"></i>
     </button>
+    }
   </div>
 
-  <div class="room-grid">
+  <div class="room-grid" >
+
   @for (room of filteredRooms; track room.id) {
-    <div class="room-card">
+    @if(room.floor===selectedFloor){
+      <div class="room-card">
       <h3>{{ room.roomName }}</h3>
       <p><strong>Ruumi number:</strong> {{ room.roomNumber }}</p>
       <p><strong>Mahutavus:</strong> {{ room.capacity }} inimest</p>
@@ -20,5 +23,6 @@
       <button class="book-button">Broneeri</button>
     </div>
   }
+    }
 </div>
 </div>

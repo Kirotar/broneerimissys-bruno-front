@@ -12,7 +12,7 @@ import { ApiService} from '../../core/services/api.service';
   styleUrls: ['./rooms.component.scss', '../styles.scss']
 })
 export class RoomsComponent {
-  selectedFloor: number = 1;
+  selectedFloor: number | null = null;
   rooms: Room[] = [];
   errorMessage: string = '';
 
@@ -32,7 +32,7 @@ export class RoomsComponent {
   }
 
   setFloor(floor: number) {
-    this.selectedFloor = floor;
+    this.selectedFloor = this.selectedFloor === floor ? null : floor;
   }
 
   get filteredRooms() {
