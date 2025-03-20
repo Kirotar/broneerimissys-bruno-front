@@ -1,6 +1,23 @@
 .logo {
-  max-width: 200px;
-  height: auto;
+  height: 50px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.registration-container {
+  text-decoration-line: underline;
+  display: flex;
+  gap: 15px;
 }
 
 .welcome-container
