@@ -12,7 +12,7 @@ import { ApiService} from '../../core/services/api.service';
   styleUrls: ['./rooms.component.scss', '../styles.scss']
 })
 export class RoomsComponent {
-  selectedFloor: number | null = null;
+  selectedFloor: number | null = 1;
   rooms: Room[] = [];
   errorMessage: string = '';
 
