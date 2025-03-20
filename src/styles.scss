@@ -51,9 +51,12 @@ header {
   color: #090688;
 }
 
-.room-card h3 {
+.room-card a {
   margin: 0 0 10px;
   font-size: 18px;
+  color: #090688;
+  text-decoration-line: none;
+  font-weight: bold;
 }
 
 .room-card p {

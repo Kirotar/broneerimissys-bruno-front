@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {Room} from '../search/search.service';
 import { ApiService} from '../../core/services/api.service';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-rooms',
   imports: [
-    NgForOf
+    NgForOf,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss', '../styles.scss']

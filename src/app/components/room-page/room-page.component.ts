@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-room-page',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './room-page.component.scss'
 })
 export class RoomPageComponent {
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      const roomId = params['id'];
+    });
+  }
 
 }
