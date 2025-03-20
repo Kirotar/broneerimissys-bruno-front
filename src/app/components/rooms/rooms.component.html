@@ -17,7 +17,7 @@
   @for (room of filteredRooms; track room.id) {
     @if(room.floor===selectedFloor){
       <div class="room-card">
-        <a [routerLink]="['/room-page-component', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+        <a [routerLink]="['/room-page', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
           {{ room.roomName }}
         </a>
         <p><strong>Ruumi number:</strong> {{ room.roomNumber }}</p>
