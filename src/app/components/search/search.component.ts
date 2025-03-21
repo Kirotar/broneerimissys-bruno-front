@@ -26,6 +26,7 @@ export class SearchComponent {
     keywords: ''
   };
 
+
   constructor(private searchService: SearchService) {
     this.rooms$ = this.searchSubject.pipe(
       switchMap(searchParams => {
@@ -50,5 +51,15 @@ export class SearchComponent {
 
   searchRoom(roomSearch: RoomSearch): void {
     this.searchSubject.next(roomSearch);
+  }
+
+  resetForm() {
+/*this.searchData.reset({
+      startDateTime: '',
+        endDateTime: '',
+        minCapacity: 0,
+        floor: 0,
+        keywords: ''
+    });*/
   }
 }
