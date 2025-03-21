@@ -1,4 +1,3 @@
-// calendar.component.ts
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpParams} from '@angular/common/http';
@@ -102,7 +101,6 @@ export class CalendarComponent implements OnInit {
   fetchRooms() {
     this.loading = true;
     this.error = '';
-    console.log("fetching rooms")
 
     this.http.get<Room[]>(`${this.apiUrl}rooms/all`)
       .pipe(
