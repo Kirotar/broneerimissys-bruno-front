@@ -19,7 +19,7 @@
       <option value="8">8</option>
     </select>
     <label for="keyword"></label>
-    <input type="text" formControlName ="keyword" id="keyword" placeholder="Otsingusõna">
+    <input type="text" formControlName ="keywords" id="keyword" placeholder="Otsingusõna">
     <button type="submit" class="search-button" (click)="toggleVisibility()">Otsi ruume</button>
     <button class="search-button" (click)="closeSearch()">Sule otsing</button>
   </form>
@@ -55,7 +55,7 @@
       </div>
     </div>
   } @else {
-    <p>Ühtegi ruumi ei leitud vastavalt otsingule.</p>
+    <p class="no-rooms">Ühtegi ruumi ei leitud vastavalt otsingule.</p>
   }
 }
 }
