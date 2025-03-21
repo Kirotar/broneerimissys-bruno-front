@@ -1,14 +1,14 @@
 <div class="rooms-container">
   <h2>OTSI ENDALE SOBIV RUUM</h2>
-  <form class="search-form" (ngSubmit)="onSubmit()">
+  <form class="search-form" [formGroup]="roomSearchForm" (ngSubmit)="onSubmit()" >
     <label for="nrpeople">Inimeste arv</label>
-    <input type="number" name="nrpeople" id="nrpeople" [(ngModel)]="searchData.minCapacity">
+    <input type="number"  id="nrpeople" formControlName ="minCapacity">
     <label for="beginning_date">Alguskuupäev</label>
-    <input type="date" id="beginning_date" name="beginning_date" [(ngModel)]="searchData.startDateTime">
+    <input type="date" id="beginning_date" formControlName ="startDateTime">
     <label for="end_date">Lõpukuupäev</label>
-    <input type="date" id="end_date" name="end_date" [(ngModel)]="searchData.endDateTime">
+    <input type="date" id="end_date" formControlName ="end_date">
     <label for="floor">Korrus</label>
-    <select name="floor" id="floor" [(ngModel)]="searchData.floor">
+    <select formControlName ="floor" id="floor">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -19,9 +19,9 @@
       <option value="8">8</option>
     </select>
     <label for="keyword"></label>
-    <input type="text" name="keyword" id="keyword" [(ngModel)]="searchData.keywords" placeholder="Otsingusõna">
-    <button type="submit" class="search-button">Otsi ruume</button>
-    <button class="search-button">Sule otsing</button>
+    <input type="text" formControlName ="keyword" id="keyword" placeholder="Otsingusõna">
+    <button type="submit" class="search-button" (click)="toggleVisibility()">Otsi ruume</button>
+    <button class="search-button" (click)="closeSearch()">Sule otsing</button>
   </form>
 </div>
 
@@ -35,25 +35,27 @@
   <div>{{ error }}</div>
 }
 
+@if (isVisible) {
 @if (rooms) {
   @if (rooms.length > 0) {
-<div class="filtered-rooms-container">
-    <div class="room-grid">
-      @for (room of rooms; track room.id) {
-        <div class="room-card">
-          <h3>{{ room.roomName }}</h3>
-          <p><strong>Ruumi number:</strong> {{ room.roomNumber }}</p>
-          <p><strong>Mahutavus:</strong> {{ room.capacity }} inimest</p>
-          <p><strong>Korrus:</strong> {{ room.floor }}</p>
-          <p><strong>Vahendid:</strong> {{ room.equipment }}</p>
-          <p><strong>Hind:</strong> {{ room.price }} €</p>
-          <p><strong>Märksõnad:</strong> {{ room.keywords }}</p>
-          <button class="book-button">Broneeri</button>
-        </div>
-      }
-    </div>
+    <div class="filtered-rooms-container">
+      <div class="room-grid">
+        @for (room of rooms; track room.id) {
+          <div class="room-card">
+            <h3>{{ room.roomName }}</h3>
+            <p><strong>Ruumi number:</strong> {{ room.roomNumber }}</p>
+            <p><strong>Mahutavus:</strong> {{ room.capacity }} inimest</p>
+            <p><strong>Korrus:</strong> {{ room.floor }}</p>
+            <p><strong>Vahendid:</strong> {{ room.equipment }}</p>
+            <p><strong>Hind:</strong> {{ room.price }} €</p>
+            <p><strong>Märksõnad:</strong> {{ room.keywords }}</p>
+            <button class="book-button">Broneeri</button>
+          </div>
+        }
+      </div>
     </div>
   } @else {
     <p>Ühtegi ruumi ei leitud vastavalt otsingule.</p>
   }
+}
 }
