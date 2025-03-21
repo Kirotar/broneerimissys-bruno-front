@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-booking-page',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class BookingPageComponent {
 
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      const roomId = params['id'];
+      const startTime = params['start'];
+      const endTime = params['end'];
+    });
+  }
 }

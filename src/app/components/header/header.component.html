@@ -5,8 +5,9 @@
   <nav></nav>
   <div class="right-section">
     <div class="registration-container">
-      <p>Logi sisse</p>
-      <p>Registreeru</p>
+      <a [routerLink]="['/login-page']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+      Logi sisse</a>
+      <a>Registreeru</a>
     </div>
     <a href="https://www.rara.ee/">
       <img src="/RaRa_sõnamärk-01.png" alt="rara-logo" class="logo">
