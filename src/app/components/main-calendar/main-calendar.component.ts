@@ -34,7 +34,7 @@ export class MainCalendarComponent  implements OnInit {
   constructor(private http: HttpClient, private apiService: ApiService) {
     this.maxDate.setMonth(this.maxDate.getMonth() + 2);
 
-    for (let i = 8; i <= 20; i++) {
+    for (let i = 10; i <= 19; i++) {
       this.hours.push(i);
     }
   }
