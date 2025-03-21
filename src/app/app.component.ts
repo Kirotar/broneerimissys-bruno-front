@@ -6,10 +6,11 @@ import {CalendarComponent} from './components/calendar/calendar.component';
 import {InfobarComponent} from './components/infobar/infobar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {RoomsComponent} from './components/rooms/rooms.component';
+import {MainCalendarComponent} from './components/main-calendar/main-calendar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, SearchComponent, CalendarComponent, InfobarComponent, FooterComponent, RoomsComponent, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
