@@ -5,6 +5,7 @@ import {HeaderComponent} from "../header/header.component";
 import {InfobarComponent} from "../infobar/infobar.component";
 import {RoomsComponent} from "../rooms/rooms.component";
 import {SearchComponent} from "../search/search.component";
+import {MainCalendarComponent} from '../main-calendar/main-calendar.component';
 
 @Component({
   selector: 'app-front-page',
@@ -14,7 +15,8 @@ import {SearchComponent} from "../search/search.component";
         HeaderComponent,
         InfobarComponent,
         RoomsComponent,
-        SearchComponent
+        SearchComponent,
+        MainCalendarComponent
     ],
   templateUrl: './front-page.component.html',
   styleUrl: './front-page.component.scss'
