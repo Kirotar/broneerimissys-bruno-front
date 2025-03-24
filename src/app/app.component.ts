@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {HeaderComponent} from './components/header/header.component';
-import {SearchComponent} from './components/search/search.component';
-import {CalendarComponent} from './components/calendar/calendar.component';
-import {InfobarComponent} from './components/infobar/infobar.component';
-import {FooterComponent} from './components/footer/footer.component';
-import {RoomsComponent} from './components/rooms/rooms.component';
-import {MainCalendarComponent} from './components/main-calendar/main-calendar.component';
+import {HeaderComponent} from './core/layout/header/header.component';
+import {SearchComponent} from './features/home/components/search/search.component';
+import {InfobarComponent} from './features/home/components/infobar/infobar.component';
+import {FooterComponent} from './core/layout/footer/footer.component';
+import {RoomsComponent} from './features/home/components/rooms/rooms.component';
+import {MainCalendarComponent} from './features/home/components/main-calendar/main-calendar.component';
 
 @Component({
   selector: 'app-root',

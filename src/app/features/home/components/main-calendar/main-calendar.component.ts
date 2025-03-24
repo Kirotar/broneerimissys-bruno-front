@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Room} from '../search/search.service';
-import {environment} from '../../environments/environment';
-import {ApiService} from '../../core/services/api.service';
+import {environment} from '../../../../environments/environment';
+import {ApiService} from '../../../../core/services/api.service';
 
 export interface BookingSearch {
   roomId: number;

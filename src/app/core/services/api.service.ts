@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
-import {BookingSearch} from '../../components/main-calendar/main-calendar.component';
+import {BookingSearch} from '../../features/home/components/main-calendar/main-calendar.component';
 
 @Injectable({
   providedIn: 'root'
