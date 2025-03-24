@@ -4,6 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Room} from '../search/search.service';
 import {environment} from '../../../../environments/environment';
 import {ApiService} from '../../../../core/services/api.service';
+import {BookingButtonDirective} from '../../../../shared/booking-button.directive';
 
 export interface BookingSearch {
   roomId: number;
@@ -14,18 +15,18 @@ export interface BookingSearch {
 @Component({
   selector: 'app-main-calendar',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [CommonModule, BookingButtonDirective],
   templateUrl: './main-calendar.component.html',
   styleUrls: ['./main-calendar.component.scss', '../styles.scss']
 })
-export class MainCalendarComponent  implements OnInit {
+export class MainCalendarComponent implements OnInit {
   rooms: Room[] = [];
   currentDate = new Date();
-  selectedDate: Date = new Date();
   maxDate = new Date();
   hours: number[] = [];
   selectedFloor: number = 2;
   timeSlotAvailability: { [key: string]: string } = {};
+  selectedSlots: Set<string> = new Set;
   loading = false;
   error = '';
 
@@ -48,9 +49,11 @@ export class MainCalendarComponent  implements OnInit {
     this.error = '';
 
     this.apiService.getBookableRooms().subscribe({
-      next: (data:any) => {this.rooms = data;
+      next: (data: any) => {
+        this.rooms = data;
         this.loading = false;
-        this.loadRoomAvailability();},
+        this.loadRoomAvailability();
+      },
       error: (error) => this.error = error.message
     });
   }
@@ -59,10 +62,10 @@ export class MainCalendarComponent  implements OnInit {
     this.rooms.forEach(room => {
       this.hours.forEach(hour => {
         const key = `${room.id}-${hour}`;
-        const startTime = this.createDateTimeString(this.selectedDate, hour);
-        const endTime = this.createDateTimeString(this.selectedDate, hour + 1);
+        const startTime = this.createDateTimeString(this.currentDate, hour);
+        const endTime = this.createDateTimeString(this.currentDate, hour + 1);
 
-        const bookingSearch = {
+        const bookingSearch: BookingSearch = {
           roomId: room.id,
           startTime: startTime,
           endTime: endTime
@@ -79,9 +82,13 @@ export class MainCalendarComponent  implements OnInit {
     return this.timeSlotAvailability[key];
   }
 
-  bookSlot(roomId: number, hour: number) {
-    console.log(`Booking room ${roomId} at ${hour}:00`);
-    // Implement  booking logic here
+  selectSlot(roomId: number, hour: number) {
+    const key = `${roomId}-${hour}`;
+    if (this.selectedSlots.has(key)) {
+      this.selectedSlots.delete(key);
+    } else if (!this.selectedSlots.has(key)) {
+      this.selectedSlots.add(key);
+    }
   }
 
   get filteredRooms() {

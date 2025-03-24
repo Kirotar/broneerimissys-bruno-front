@@ -103,10 +103,13 @@
 
 
     &:hover {
-      background-color: #F4D5A4;
+      background-color: #F4633A;
     }
   }
 
+  &.selected {
+    background-color: #F4633A;
+  }
 
   &.disabled {
     background-color: #D9D9D9;
@@ -117,6 +120,7 @@
     background-color: #F4D5A4;
     cursor: not-allowed;
   }
+
 }
 
 
