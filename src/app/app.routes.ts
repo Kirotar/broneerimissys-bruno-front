@@ -7,6 +7,6 @@ import {FrontPageComponent} from './features/home/front-page/front-page.componen
 export const routes: Routes = [
   { path: '', component: FrontPageComponent },
   { path: 'room-page/:id', component: RoomPageComponent },
-  { path: 'login-page', component: LoginPageComponent},
-  { path: 'booking-page', component: BookingPageComponent}
+  { path: 'login', component: LoginPageComponent},
+  { path: 'booking', component: BookingPageComponent}
 ];
