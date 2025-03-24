@@ -10,20 +10,20 @@
   </div>
 
   <div class="floor-buttons">
-    <button *ngFor="let floor of [2,3,4,5]"
-            (click)="setFloor(floor)"
+    @for (floor of [2,3,4,5]; track floor) {
+    <button (click)="setFloor(floor)"
             [class.active]="selectedFloor === floor">
       {{ floor }}. korrus <i class="arrow down"></i>
     </button>
+    }
     <button>Vaata päringuga broneeritavaid ruume</button>
   </div>
 
-  <div class="grid-row" *ngFor="let room of filteredRooms">
+  @for(room of filteredRooms; track room.id){
+  <div class="grid-row">
     <div class="grid-cell room-name">{{ room.roomName }}</div>
-    <div
-      class="grid-cell"
-      *ngFor="let hour of hours"
-    >
+    @for (hour of hours; track hour) {
+    <div class="grid-cell">
       <button class="grid-cell button time-slot"
               [ngClass]="{
               'available': getSlotAvailability(room.id, hour) === 'available',
@@ -32,23 +32,27 @@
               (click)="getSlotAvailability(room.id, hour) === 'available' && bookSlot(room.id, hour)"
       >{{ hour }} </button>
     </div>
+    }
   </div>
+  }
   <button class="book-button">Broneeri</button>
 </div>
 
-
-<div class="loading-container" *ngIf="loading">
+@if("loading") {
+<div class="loading-container">
   <div class="loading">Laen ruume...</div>
 </div>
+}
 
-
-<div class="error-container" *ngIf="error">
+@if("error"){
+<div class="error-container">
   <div class="error">{{ error }}</div>
   <button (click)="fetchBookableRooms()" class="retry-button">Retry</button>
 </div>
+}
 
-
-<div class="no-rooms" *ngIf="!loading && !error && rooms.length === 0">
+@if ("!loading && !error && rooms.length === 0") {
+<div class="no-rooms">
   Ühtegi ruumi pole saadaval.
 </div>
-
+}
