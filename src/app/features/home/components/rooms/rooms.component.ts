@@ -7,7 +7,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 @Component({
   selector: 'app-rooms',
   imports: [
-    NgForOf,
     RouterLink,
     RouterLinkActive
   ],
