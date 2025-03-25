@@ -1,16 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpClient, HttpParams} from '@angular/common/http';
 import {Room} from '../search/search.service';
-import {environment} from '../../../../environments/environment';
 import {ApiService} from '../../../../core/services/api.service';
 import {BookingButtonDirective} from '../../../../shared/booking-button.directive';
 
-export interface BookingSearch {
+export interface Booking {
   roomId: number;
   startTime: string;
   endTime: string;
+  userId?: number;
 }
+
+//export type BookingSearch = Omit<Booking, "userId">;
+export type BookingMap = Omit<Booking, "roomId">;
 
 @Component({
   selector: 'app-main-calendar',
@@ -26,13 +28,13 @@ export class MainCalendarComponent implements OnInit {
   hours: number[] = [];
   selectedFloor: number = 2;
   timeSlotAvailability: { [key: string]: string } = {};
-  selectedSlots: Set<string> = new Set;
   loading = false;
   error = '';
+  selectedSlot: Set<string> = new Set;
+  roomBookings: Map<number, BookingMap[]> = new Map([]);
+  bookings: Booking[] = [];
 
-  private apiUrl = environment.apiUrl;
-
-  constructor(private http: HttpClient, private apiService: ApiService) {
+  constructor(private apiService: ApiService) {
     this.maxDate.setMonth(this.maxDate.getMonth() + 2);
 
     for (let i = 10; i <= 19; i++) {
@@ -65,7 +67,7 @@ export class MainCalendarComponent implements OnInit {
         const startTime = this.createDateTimeString(this.currentDate, hour);
         const endTime = this.createDateTimeString(this.currentDate, hour + 1);
 
-        const bookingSearch: BookingSearch = {
+        const bookingSearch: Booking = {
           roomId: room.id,
           startTime: startTime,
           endTime: endTime
@@ -77,18 +79,61 @@ export class MainCalendarComponent implements OnInit {
     });
   }
 
+  bookRoom() {
+    this.roomBookings.clear();
+
+    this.selectedSlot.forEach(slot => {
+      const [roomId, dateTime] = slot.split('--').map(String);
+      console.log(dateTime);
+      if (!this.roomBookings.has(Number(roomId))) {
+        this.roomBookings.set(Number(roomId), []);
+      }
+      const startTime = new Date(dateTime);
+      const endTime = new Date(startTime);
+      endTime.setHours(startTime.getHours() + 1);
+
+      this.roomBookings.get(Number(roomId))?.push({ startTime: startTime.toISOString(), endTime: endTime.toISOString()});
+    });
+
+    this.roomBookings.forEach((bookingArray, roomId) => {
+      bookingArray.sort((a, b) => a.startTime.localeCompare(b.startTime));
+
+      let start = bookingArray[0].startTime;
+      let end = bookingArray[0].endTime;
+
+      for (let i = 1; i < bookingArray.length; i++) {
+        if (bookingArray[i].startTime === end) {
+          end = bookingArray[i].endTime;
+        } else {
+          this.bookings.push({roomId, startTime: start, endTime: end});
+          start = bookingArray[i].startTime;
+          end = bookingArray[i].endTime;
+        }
+      }
+      this.bookings.push({roomId, startTime: start, endTime: end});
+    });
+
+    if (this.bookings.length === 0) {
+      alert("Ühtegi aega pole valitud!");
+      return;
+    }
+  }
+
+
   getSlotAvailability(roomId: number, hour: number): string {
     const key = `${roomId}-${hour}`;
     return this.timeSlotAvailability[key];
   }
 
   selectSlot(roomId: number, hour: number) {
-    const key = `${roomId}-${hour}`;
-    if (this.selectedSlots.has(key)) {
-      this.selectedSlots.delete(key);
-    } else if (!this.selectedSlots.has(key)) {
-      this.selectedSlots.add(key);
+    const dateTime = this.createDateTimeString(this.currentDate, hour);
+    const key = `${roomId}--${dateTime}`;
+    if (this.selectedSlot.has(key)) {
+      this.selectedSlot.delete(key);
+    } else {
+      this.selectedSlot.add(key);
     }
+    console.log(key);
   }
 
   get filteredRooms() {

@@ -28,17 +28,16 @@
                   [ngClass]="{
               'available': getSlotAvailability(room.id, hour) === 'available',
               'booked': getSlotAvailability(room.id, hour) === 'booked',
-              'selected': selectedSlots.has(room.id + '-' + hour)
+              'selected': selectedSlot.has(room.id + '--' + createDateTimeString(currentDate, hour))
             }"
                   (click)="selectSlot(room.id, hour)"
           >{{ hour }}
           </button>
         </div>
-
       }
     </div>
   }
-  <button class="book-button" >Broneeri
+  <button class="book-button" (click)="bookRoom()" appBookingButton [bookings]="bookings">Broneeri
   </button>
 </div>
 
