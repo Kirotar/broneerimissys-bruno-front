@@ -1,11 +1,13 @@
 import {Component, OnInit, signal} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink, RouterLinkActive} from '@angular/router';
 import {MainCalendarComponent} from '../../home/components/main-calendar/main-calendar.component';
 
 @Component({
   selector: 'app-booking-page',
   imports: [
-    MainCalendarComponent
+    MainCalendarComponent,
+    RouterLinkActive,
+    RouterLink
   ],
   templateUrl: './booking-page.component.html',
   styleUrls: ['./booking-page.component.scss', '../../../../../styles.scss']

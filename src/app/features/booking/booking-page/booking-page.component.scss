@@ -26,19 +26,12 @@
   text-align: right;
 }
 
-.booking-form-container input,
-.booking-form-container textarea {
+.booking-form-container input{
   padding: 10px;
   margin-bottom: 16px;
   width: 90%;
-
-  /*  border: 1px solid #ddd;
-    border-radius: 5px;*/
 }
 
-.booking-form-container textarea {
-  resize: vertical;
-}
 
 .booking-form-container p {
   margin-bottom: 16px;
