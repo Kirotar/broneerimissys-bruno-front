@@ -6,6 +6,7 @@ import {FrontPageComponent} from './features/home/front-page/front-page.componen
 import {RegistrationPageComponent} from './core/auth/registration-page/registration-page.component';
 import {ConfirmationPageComponent} from './features/booking/confirmation-page/confirmation-page.component';
 import {UserPageComponent} from './features/user/user-page/user-page.component';
+import {QueryFormComponent} from './features/booking/query-form/query-form.component';
 
 export const routes: Routes = [
   { path: '', component: FrontPageComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'registration', component: RegistrationPageComponent},
   { path: 'booking', component: BookingPageComponent},
   { path: 'confirmation', component: ConfirmationPageComponent},
-  { path: 'user', component: UserPageComponent}
+  { path: 'user', component: UserPageComponent},
+  { path: 'query', component: QueryFormComponent}
 ];
