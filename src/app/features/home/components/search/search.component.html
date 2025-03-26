@@ -1,12 +1,12 @@
 <div class="rooms-container">
   <h2>OTSI ENDALE SOBIV RUUM</h2>
-  <form class="search-form" [formGroup]="roomSearchForm" (ngSubmit)="onSubmit()" >
+  <form class="form" [formGroup]="roomSearchForm" (ngSubmit)="onSubmit()" >
     <label for="nrpeople">Inimeste arv</label>
     <input type="number"  id="nrpeople" formControlName ="minCapacity">
     <label for="beginning_date">Alguskuupäev</label>
-    <input type="date" id="beginning_date" formControlName ="startDateTime">
+    <input type="datetime-local" id="beginning_date" formControlName ="startDateTime">
     <label for="end_date">Lõpukuupäev</label>
-    <input type="date" id="end_date" formControlName ="end_date">
+    <input type="datetime-local" id="end_date" formControlName ="end_date">
     <label for="floor">Korrus</label>
     <select formControlName ="floor" id="floor">
       <option value="1">1</option>
