@@ -15,24 +15,26 @@
 </div>
 
 <div class="centres-info-container">
-  <div class="info-item"><img src="/edu_examp.png" alt="Haridusprogrammid"></div>
-  <div class="info-item"><div class="text"><h3>Haridusprogrammid</h3>
-    <p>Hariduskeskuses on võimalik broneerida haridusprogramme rühmadele.</p>
-    <button>Tee päring</button>
-  </div>
-  </div>
+  <div class="info-item"><img src="/conference_example.png" alt="Sündmused"></div>
   <div class="info-item">
     <div class="text"><h3>Sündmused</h3>
-    <p>
-      Korralda oma suurüritus või sündmus RaRa-s! Lisaks konverentsisaalile on võimalik proovida hulgaliselt erinevaid
-      ruume suuremate ja väiksemate sündmuste korraldamiseks.
-      Vaata ruume, mida on võimalik päringuga broneerida:
-    </p>
-    <button>Vaata ruume</button>
-    <p>Või tee päring:</p>
-    <button>Tee päring</button>
+      <p>
+        Korralda oma suurüritus või sündmus RaRa-s! Lisaks konverentsisaalile on võimalik proovida hulgaliselt erinevaid
+        ruume suuremate ja väiksemate sündmuste korraldamiseks.
+        Vaata ruume, mida on võimalik päringuga broneerida:
+      </p>
+      <button>Vaata ruume</button>
+      <p>Või tee päring:</p>
+      <button [routerLink]="['/query']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+        Tee päring</button>
+    </div>
+  </div>
+
+  <div class="info-item"><div class="text"><h3>Haridusprogrammid</h3>
+    <p>Hariduskeskuses on võimalik broneerida haridusprogramme rühmadele.</p>
+    <a href="https://www.rara.ee/programmid/"><button >Tee päring</button></a>
   </div>
   </div>
-  <div class="info-item"><img src="/conference_example.png" alt="Sündmused"></div>
+  <div class="info-item"><img src="/edu_examp.png" alt="Haridusprogrammid"></div>
 
 </div>
