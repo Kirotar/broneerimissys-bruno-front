@@ -1,0 +1,91 @@
+.booking-form-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .button-container{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.booking-form-container form {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-gap: 15px;
+  width: 100%;
+}
+
+.booking-form-container label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #090688;
+  text-align: right;
+}
+
+.booking-form-container input,
+.booking-form-container textarea {
+  padding: 10px;
+  margin-bottom: 16px;
+  width: 90%;
+
+  /*  border: 1px solid #ddd;
+    border-radius: 5px;*/
+}
+
+.booking-form-container textarea {
+  resize: vertical;
+}
+
+.booking-form-container p {
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.booking-form-container button {
+
+}
+
+.booking-info-container {
+  color: #090688;
+  background-color: #F4D5A4;
+  padding: 20px 20px 20px 50px;
+}
+
+.booking-request-info-container {
+  display: flex;
+  color: #F4633A;
+  font-weight: bold;
+  padding: 10px 10px 10px 50px;
+  gap: 10px;
+}
+
+.header-row{
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .booking-form-container {
+    padding: 15px;
+  }
+
+  .booking-form-container form {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .booking-form-container label {
+    text-align: left;
+  }
+
+  .booking-form-container input,
+  .booking-form-container textarea {
+    padding: 8px;
+    width: 100%;
+  }
+
+}
