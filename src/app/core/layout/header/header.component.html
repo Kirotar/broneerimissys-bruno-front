@@ -5,6 +5,8 @@
   <nav></nav>
   <div class="right-section">
     <div class="registration-container">
+      <a [routerLink]="['/user']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+        Kasutaja</a>
       <a [routerLink]="['/login']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
       Logi sisse</a>
       <a [routerLink]="['/registration']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">Registreeru</a>

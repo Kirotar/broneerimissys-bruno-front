@@ -5,6 +5,7 @@ import {BookingPageComponent} from './features/booking/booking-page/booking-page
 import {FrontPageComponent} from './features/home/front-page/front-page.component';
 import {RegistrationPageComponent} from './core/auth/registration-page/registration-page.component';
 import {ConfirmationPageComponent} from './features/booking/confirmation-page/confirmation-page.component';
+import {UserPageComponent} from './features/user/user-page/user-page.component';
 
 export const routes: Routes = [
   { path: '', component: FrontPageComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'registration', component: RegistrationPageComponent},
   { path: 'booking', component: BookingPageComponent},
-  { path: 'confirmation', component: ConfirmationPageComponent}
+  { path: 'confirmation', component: ConfirmationPageComponent},
+  { path: 'user', component: UserPageComponent}
 ];
