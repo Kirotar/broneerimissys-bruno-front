@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
@@ -11,5 +11,5 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+ welcomeMessage = signal('Tere tulemast Broneerimisüsteemi BRuNO!')
 }
