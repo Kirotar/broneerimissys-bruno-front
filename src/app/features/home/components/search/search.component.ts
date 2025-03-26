@@ -3,11 +3,12 @@ import {AsyncPipe, CommonModule} from '@angular/common';
 import {Observable, BehaviorSubject, switchMap, finalize, of} from 'rxjs';
 import {Room, RoomSearch, SearchService} from './search.service';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [AsyncPipe, FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [AsyncPipe, FormsModule, CommonModule, ReactiveFormsModule, RouterLinkActive, RouterLink],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss', '../../../../../styles.scss']
 })

@@ -42,7 +42,10 @@
       <div class="room-grid">
         @for (room of rooms; track room.id) {
           <div class="room-card">
-            <h3>{{ room.roomName }}</h3>
+            <img src="/conference_example.png" alt="Sündmused">
+            <a [routerLink]="['/room', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+              {{ room.roomName }}
+            </a>
             <p><strong>Ruumi number:</strong> {{ room.roomNumber }}</p>
             <p><strong>Mahutavus:</strong> {{ room.capacity }} inimest</p>
             <p><strong>Korrus:</strong> {{ room.floor }}</p>

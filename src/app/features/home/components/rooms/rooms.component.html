@@ -17,6 +17,7 @@
   @for (room of filteredRooms; track room.id) {
     @if(room.floor===selectedFloor){
       <div class="room-card">
+        <img src="/conference_example.png" alt="Sündmused">
         <a [routerLink]="['/room', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
           {{ room.roomName }}
         </a>
@@ -27,6 +28,7 @@
       <p><strong>Hind:</strong> {{ room.price }} €</p>
       <p><strong>Märksõnad:</strong> {{ room.keywords }}</p>
       <button class="book-button">Broneeri</button>
+      <button class="book-button">Vaata täpsemalt</button>
     </div>
   }
     }
