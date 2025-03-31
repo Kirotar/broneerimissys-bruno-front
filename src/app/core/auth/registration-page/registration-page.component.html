@@ -1,16 +1,19 @@
 <div class="login-form-container">
-  <form class="login-form" action="login">
+  <form class="login-form" action="login" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <label for="name">Eesnimi:</label>
-    <input type="text" id="name" name="name" required />
+    <input type="text" id="name" formControlName ="firstName" required />
     <label for="family-name">Perekonnanimi:</label>
-    <input type="text" id="family-name" name="family-name" required />
-    <label for="username">Email:</label>
-    <input type="text" id="email" name="email" required />
-    <label for="username">Vali kasutajanimi:</label>
-    <input type="text" id="username" name="username" required />
+    <input type="text" id="family-name" formControlName ="lastName" required />
+    <label for="email">Email:</label>
+    <input type="text" id="email" formControlName ="email" required />
     <label for="password">Vali parool:</label>
-    <input type="password" id="password" name="password" required />
-
-    <button type="submit">Registreeru</button>
+    <input type="password" id="password" formControlName ="password" required />
+    <label for="role">Vali roll:</label>
+    <select id="role" formControlName="roleId" required>
+      <option [value]="1">RaRa lugeja</option>
+      <option [value]="2">Tavakasutaja</option>
+      <option [value]="3">Admin</option>
+      <option [value]="4">Teadlane</option>
+    </select>    <button type="submit">Registreeru</button>
   </form>
 </div>

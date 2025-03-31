@@ -1,11 +1,39 @@
 import { Component } from '@angular/core';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {ApiService} from '../../services/api.service';
+
+
+export interface Registration {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  roleId: number;
+}
 
 @Component({
   selector: 'app-registration-page',
-  imports: [],
+  imports: [ FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './registration-page.component.html',
   styleUrl: './registration-page.component.scss'
 })
 export class RegistrationPageComponent {
+  registrationForm: FormGroup;
 
+  error: string | null = null;
+
+  constructor(private apiService: ApiService, private fb: FormBuilder) {
+    this.registrationForm = this.fb.group({
+      firstName: [''],
+      lastName: [''],
+      email: [''],
+      password: [''],
+      roleId: [0],
+    });
+  }
+
+  onSubmit(){
+    this.apiService.registerUser(this.registrationForm.value);
+  }
 }
