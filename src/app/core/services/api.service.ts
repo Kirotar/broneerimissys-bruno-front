@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
 import {Booking} from '../../features/home/components/main-calendar/main-calendar.component';
+import {Registration} from '../auth/registration-page/registration-page.component';
+import {Login} from '../auth/login-page/login-page.component';
 
 @Injectable({
   providedIn: 'root'
@@ -55,4 +57,23 @@ searchRoom() {
     );
   }
 
+registerUser(registration: Registration){
+this.http.post<Registration>(`${this.apiUrl}auth/register`, registration).subscribe({
+  next: (data) => {
+    // navigate the user to another page
+  },
+    error: (err) => {
+    console.error('Registration failed', err);
+  }
+  });
+}
+
+  login(request: Login): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}auth/login`, request).pipe(
+      catchError((error) => {
+        console.error('Login failed', error);
+        return throwError(() => new Error('Sisselogimine ebaõnnestus. Kontrolli oma andmeid.'));
+      })
+    );
+  }
 }
