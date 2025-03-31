@@ -1,6 +1,6 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {ActivatedRoute, RouterLink, RouterLinkActive} from '@angular/router';
-import {MainCalendarComponent} from '../../home/components/main-calendar/main-calendar.component';
+import {Booking, MainCalendarComponent} from '../../home/components/main-calendar/main-calendar.component';
 
 @Component({
   selector: 'app-booking-page',
@@ -13,20 +13,19 @@ import {MainCalendarComponent} from '../../home/components/main-calendar/main-ca
   styleUrls: ['./booking-page.component.scss', '../../../../../styles.scss']
 })
 export class BookingPageComponent implements OnInit{
-  roomId!: number;
-  startTime!: string;
-  endTime!: string;
+  bookings: Booking[] = [];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.roomId = params['roomId'];
-      this.startTime = params['startTime'];
-      this.endTime = params['endTime'];
-
-      this.startTime = new Date(this.startTime).toLocaleString();
-      this.endTime = new Date(this.endTime).toLocaleString();
+      if (params['bookings']) {
+        try {
+          this.bookings = JSON.parse(params['bookings']);
+        } catch (error) {
+          console.error('Error parsing bookings:', error);
+        }
+      }
     });
   }
 }

@@ -6,8 +6,9 @@
     NB! Veendu andmete õigsuses!</p>
 
     <label > Broneeringud</label>
-    <p>{{ roomId }} {{ startTime }} {{ endTime }}</p>
-
+    @for (booking of bookings; track bookings){
+    <p>{{ booking.roomId }}, {{ booking.startTime }} - {{ booking.endTime }}</p>
+    }
 <!--    <label>Lisa alguse kuupäev ja kellaaeg</label>
     <input type="datetime-local">
 
