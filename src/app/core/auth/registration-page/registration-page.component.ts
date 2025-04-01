@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ApiService} from '../../services/api.service';
+import { Router } from '@angular/router';
 
 
 export interface Registration {
@@ -23,7 +24,7 @@ export class RegistrationPageComponent {
 
   error: string | null = null;
 
-  constructor(private apiService: ApiService, private fb: FormBuilder) {
+  constructor(private apiService: ApiService, private fb: FormBuilder, private router: Router) {
     this.registrationForm = this.fb.group({
       firstName: [''],
       lastName: [''],
