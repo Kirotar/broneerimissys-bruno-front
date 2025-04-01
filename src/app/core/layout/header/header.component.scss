@@ -14,15 +14,32 @@ header {
   gap: 20px;
 }
 
-.registration-container {
-  text-decoration-line: underline;
+.container {
   display: flex;
   gap: 15px;
 }
 
-.registration-container a{
+.container a{
   color: black;
 }
+
+.container a:hover{
+  color: #070563;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.logout-btn:hover {
+  color: #070563;
+}
+
 
 .welcome-container
 {
