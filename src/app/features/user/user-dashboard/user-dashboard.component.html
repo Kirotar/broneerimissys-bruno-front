@@ -1,9 +1,58 @@
 <div class="container">
-  <h2>Minu andmed</h2>
-</div>
-<div class="container">
-  <h2>Minu aktiivsed broneeringud</h2>
-</div>
-<div class="container">
-  <h2>Minu varasemad broneeringud</h2>
-</div>
+  <h1>Tere tulemast, {{ user?.firstName }}! </h1>
+
+  <div class="profile-container">
+    <img src="/usericon.svg" alt="icon" class="icon">
+    <div class="profile-info">
+      <h2>Nimi: {{ user?.firstName }} {{ user?.lastName }}</h2>
+      <h2>Email/kasutajanimi: {{ user?.email }}</h2>
+    </div>
+  </div>
+
+  <div class="form-grid">
+    <div class="form-group">
+      <label class="required">Email</label>
+      <input type="email" placeholder="{{ user?.email }}" class="input-valid">
+    </div>
+
+    <div class="form-group">
+      <label>Mobiiltelefoni number</label>
+      <input type="text" placeholder="">
+      <div class="helper-text">Palun sisesta telefoninumber koos riigikoodiga</div>
+    </div>
+    </div>
+
+    <div class="toggle-container">
+      <label class="toggle">
+        <input type="checkbox" [checked]="showPasswordFields" (change)="togglePasswordFields()">
+        <span class="slider"></span>
+      </label>
+      <span>Soovin luua sisselogimiseks salasõna või muuta olemasolevat</span>
+    </div>
+
+@if(showPasswordFields){
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="required">Salasõna</label>
+        <input type="text" placeholder="">
+      </div>
+
+      <div class="form-group">
+        <label class="required">Korda salasõna</label>
+        <input type="text" placeholder="">
+      </div>
+    </div>
+}
+    <div class="toggle-container">
+      <label class="toggle">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <span>Loobu teenusest</span>
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-secondary"> <a href="http://localhost:4200/">Tagasi pealehele</a></button>
+      <button class="btn btn-primary">Salvesta</button>
+    </div>
+  </div>
