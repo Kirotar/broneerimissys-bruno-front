@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NgForOf} from '@angular/common';
 import {Room} from '../search/search.service';
 import { ApiService} from '../../../../core/services/api.service';
 import {RouterLink, RouterLinkActive} from '@angular/router';
