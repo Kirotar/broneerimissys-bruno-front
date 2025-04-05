@@ -3,10 +3,11 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, of, throwError} from 'rxjs';
-import {Booking} from '../../features/home/components/main-calendar/main-calendar.component';
+import { Booking} from '../../features/booking/booking.model';
 import {Registration} from '../auth/registration-page/registration-page.component';
 import {Login} from '../auth/login-page/login-page.component';
 import { Router } from '@angular/router';
+
 
 
 @Injectable({
@@ -38,8 +39,8 @@ export class ApiService {
   checkRoomAvailability (bookingSearch: Booking): Observable<string> {
     let params = new HttpParams()
       .set('roomId', bookingSearch.roomId)
-      .set('startDateTime', bookingSearch.startTime)
-      .set('endDateTime', bookingSearch.endTime);
+      .set('startTime', bookingSearch.startTime)
+      .set('endTime', bookingSearch.endTime);
 
     return this.http.get<boolean>(`${this.apiUrl}booking/get-room-availability`, {params}).pipe(
       map(available => (available ? 'available' : 'booked')),
