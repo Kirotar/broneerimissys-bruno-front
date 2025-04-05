@@ -28,7 +28,7 @@
                   [ngClass]="{
               'available': getSlotAvailability(room.id, hour) === 'available',
               'booked': getSlotAvailability(room.id, hour) === 'booked',
-              'selected': selectedSlot.has(room.id + '--' + createDateTimeString(currentDate, hour))
+              'selected': selectedSlot.has(room.id + '--' + dateTimeUtils.createDateTimeString(currentDate, hour))
             }"
                   (click)="selectSlot(room.id, hour)"
           >{{ hour }}
@@ -42,21 +42,16 @@
 </div>
 
 
+
+
 <!--@if ("loading") {
   <div class="loading-container">
     <div class="loading">Laen ruume...</div>
   </div>
 }
-
 @if ("error") {
   <div class="error-container">
     <div class="error">{{ error }}</div>
     <button (click)="fetchBookableRooms()" class="retry-button">Retry</button>
-  </div>
-}-->
-
-<!--@if ("!loading && !error && rooms.length === 0") {
-  <div class="no-rooms">
-    Ühtegi ruumi pole saadaval.
   </div>
 }-->
