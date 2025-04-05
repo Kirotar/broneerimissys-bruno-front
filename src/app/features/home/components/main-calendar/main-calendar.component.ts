@@ -3,15 +3,9 @@ import {CommonModule} from '@angular/common';
 import {Room} from '../search/search.service';
 import {ApiService} from '../../../../core/services/api.service';
 import {BookingButtonDirective} from '../../../../shared/booking-button.directive';
+import {Booking} from '../../../booking/booking.model';
+import {DateTimeUtilsService} from '../../../../shared/date-time.utils.service';
 
-export interface Booking {
-  roomId: number;
-  startTime: string;
-  endTime: string;
-  userId?: number;
-}
-
-//export type BookingSearch = Omit<Booking, "userId">;
 export type BookingMap = Omit<Booking, "roomId">;
 
 @Component({
@@ -22,21 +16,36 @@ export type BookingMap = Omit<Booking, "roomId">;
   styleUrls: ['./main-calendar.component.scss', '../styles.scss']
 })
 export class MainCalendarComponent implements OnInit {
+  // Data properties
   rooms: Room[] = [];
+  bookings: Booking[] = [];
+
+  // Time-related properties
   currentDate = new Date();
   maxDate = new Date();
   hours: number[] = [];
+
+  // UI state properties
   selectedFloor: number = 2;
   timeSlotAvailability: { [key: string]: string } = {};
+  selectedSlot: Set<string> = new Set();
+
+  // Status flags
   loading = false;
   error = '';
-  selectedSlot: Set<string> = new Set;
+
   roomBookings: Map<number, BookingMap[]> = new Map([]);
-  bookings: Booking[] = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, protected dateTimeUtils: DateTimeUtilsService) {
+    this.initializeDates();
+    this.initializeHours();
+  }
+
+  private initializeDates(): void {
     this.maxDate.setMonth(this.maxDate.getMonth() + 2);
+  }
 
+  private initializeHours(): void {
     for (let i = 10; i <= 19; i++) {
       this.hours.push(i);
     }
@@ -64,8 +73,8 @@ export class MainCalendarComponent implements OnInit {
     this.rooms.forEach(room => {
       this.hours.forEach(hour => {
         const key = `${room.id}-${hour}`;
-        const startTime = this.createDateTimeString(this.currentDate, hour);
-        const endTime = this.createDateTimeString(this.currentDate, hour + 1);
+        const startTime = this.dateTimeUtils.createDateTimeString(this.currentDate, hour);
+        const endTime = this.dateTimeUtils.createDateTimeString(this.currentDate, hour + 1);
 
         const bookingSearch: Booking = {
           roomId: room.id,
@@ -80,11 +89,11 @@ export class MainCalendarComponent implements OnInit {
   }
 
   bookRoom() {
+    this.bookings = [];
     this.roomBookings.clear();
 
     this.selectedSlot.forEach(slot => {
       const [roomId, dateTime] = slot.split('--').map(String);
-      console.log(dateTime);
       if (!this.roomBookings.has(Number(roomId))) {
         this.roomBookings.set(Number(roomId), []);
       }
@@ -92,7 +101,7 @@ export class MainCalendarComponent implements OnInit {
       const endTime = new Date(startTime);
       endTime.setHours(startTime.getHours() + 1);
 
-      this.roomBookings.get(Number(roomId))?.push({ startTime: startTime.toISOString(), endTime: endTime.toISOString()});
+      this.roomBookings.get(Number(roomId))?.push({startTime: startTime.toISOString(), endTime: endTime.toISOString()});
     });
 
     this.roomBookings.forEach((bookingArray, roomId) => {
@@ -126,7 +135,7 @@ export class MainCalendarComponent implements OnInit {
   }
 
   selectSlot(roomId: number, hour: number) {
-    const dateTime = this.createDateTimeString(this.currentDate, hour);
+    const dateTime = this.dateTimeUtils.createDateTimeString(this.currentDate, hour);
     const key = `${roomId}--${dateTime}`;
     if (this.selectedSlot.has(key)) {
       this.selectedSlot.delete(key);
@@ -141,53 +150,38 @@ export class MainCalendarComponent implements OnInit {
   }
 
   formatDate(date: Date) {
-    return date.toLocaleDateString('et-EE', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    return this.dateTimeUtils.formatDate(date);
   }
 
-  isSameDay(date1: Date, date2: Date) {
-    return date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate();
+  isCurrentDateToday(): boolean {
+    return this.dateTimeUtils.isSameDay(this.currentDate, new Date());
   }
 
-  isCurrentDateToday() {
-    return this.isSameDay(this.currentDate, new Date());
-  }
-
-  isMaxDate() {
-    return this.isSameDay(this.currentDate, this.maxDate);
-  }
-
-  createDateTimeString(date: Date, hour: number): string {
-    const newDate = new Date(date);
-    newDate.setHours(hour, 0, 0, 0);
-    return newDate.toISOString();
+  isMaxDate(): boolean {
+    return this.dateTimeUtils.isSameDay(this.currentDate, this.maxDate);
   }
 
   setFloor(floor: number) {
     this.selectedFloor = floor;
   }
 
-  goToNextDay() {
-    const nextDay = new Date(this.currentDate);
-    nextDay.setDate(nextDay.getDate() + 1);
-    if (nextDay <= this.maxDate) {
+  goToNextDay(): void {
+    const nextDay = this.dateTimeUtils.getNextDay(this.currentDate);
+
+    if (this.dateTimeUtils.isBeforeOrSameDay(nextDay, this.maxDate)) {
       this.currentDate = nextDay;
+      this.loadRoomAvailability();
     }
   }
 
-  goToPreviousDay() {
-    const prevDay = new Date(this.currentDate);
-    prevDay.setDate(prevDay.getDate() - 1);
+  goToPreviousDay(): void {
+    const prevDay = this.dateTimeUtils.getPreviousDay(this.currentDate);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    if (prevDay >= today) {
+
+    if (this.dateTimeUtils.isAfterOrSameDay(prevDay, today)) {
       this.currentDate = prevDay;
+      this.loadRoomAvailability();
     }
   }
 }
