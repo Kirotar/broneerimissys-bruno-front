@@ -1,27 +1,23 @@
 <div class="booking-form-container">
-  <form class="form">
+  <form class="form" (ngSubmit)="onSubmitPay()">
     <label>Sinu andmed</label>
-<p>Mari Mets <br>
-  mari.metsemail.ee<br>
-    NB! Veendu andmete õigsuses!</p>
+    <p>
+      {{ user?.firstName }} {{ user?.lastName }}<br>
+      {{ user?.email }}<br>
+      NB! Veendu andmete õigsuses!</p>
 
-    <label > Broneeringud</label>
-    @for (booking of bookings; track bookings){
-    <p>{{ booking.roomId }}, {{ booking.startTime }} - {{ booking.endTime }}</p>
+    <label> Broneeringud</label>
+    @for (booking of bookings; track bookings) {
+      <p>{{ booking.roomId }}, {{ booking.startTime }} - {{ booking.endTime }}</p>
     }
-<!--    <label>Lisa alguse kuupäev ja kellaaeg</label>
-    <input type="datetime-local">
-
-    <label>Lisa lõpu kuupäev ja kellaaeg</label>
-    <input type="datetime-local">-->
-
     <label for="participants">Osalejate arv</label>
     <input id="participants" type="number" placeholder="Sisesta osalejate arv" required>
-
   </form>
   <div class="button-container">
-  <button type="submit" class="book-button" [routerLink]="['/confirmation']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">Maksma</button>
-</div>
+    <button type="submit" class="book-button" [routerLink]="['/confirmation']" routerLinkActive="active"
+            [ariaCurrentWhenActive]="'page'">Maksma
+    </button>
+  </div>
 </div>
 
 <hr>
@@ -34,7 +30,7 @@
   <p>Korraga on võimalik broneerida ruumi <b>1-3 tunniks</b>.</p>
   <p>Ühel kasutajal saab olla korraga <b>10 aktiivset broneeringut</b>.</p>
   <p>Pärast broneeringu alustamist on aega 10 minutit, et broneering lõpule viia.</p>
-  </div>
+</div>
 <div class="booking-request-info-container">
   <p>Kui soovid teha broneeringut, mis neile kriteeriumitele ei vasta, siis kasuta PÄRINGU vormi.</p>
   <button class="book-button">Päring</button>
