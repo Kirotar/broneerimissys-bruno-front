@@ -29,6 +29,7 @@ export class MainCalendarComponent implements OnInit {
   selectedFloor: number = 2;
   timeSlotAvailability: { [key: string]: string } = {};
   selectedSlot: Set<string> = new Set();
+  maxBookings: number = 10;
 
   // Status flags
   loading = false;
@@ -127,7 +128,7 @@ export class MainCalendarComponent implements OnInit {
       return;
     }
 
-    if (this.bookings.length >= 10) {
+    if (this.bookings.length >= this.maxBookings) {
       alert("Üle kümne broneeringu ei saa teha!");
       return;
     }
