@@ -14,6 +14,6 @@ export class UserService {
   }
 
   fetchUserInfo(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}user/info`)
+    return this.http.get<User>(`${this.apiUrl}user/info`);
   }
 }
