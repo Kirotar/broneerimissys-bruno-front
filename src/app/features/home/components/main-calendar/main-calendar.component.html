@@ -31,6 +31,7 @@
               'selected': selectedSlot.has(room.id + '--' + dateTimeUtils.createDateTimeString(currentDate, hour))
             }"
                   (click)="selectSlot(room.id, hour)"
+                  [disabled]="getSlotAvailability(room.id, hour) === 'booked'"
           >{{ hour }}
           </button>
         </div>
