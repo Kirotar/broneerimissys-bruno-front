@@ -126,6 +126,11 @@ export class MainCalendarComponent implements OnInit {
       alert("Ühtegi aega pole valitud!");
       return;
     }
+
+    if (this.bookings.length >= 10) {
+      alert("Üle kümne broneeringu ei saa teha!");
+      return;
+    }
   }
 
 
@@ -135,14 +140,14 @@ export class MainCalendarComponent implements OnInit {
   }
 
   selectSlot(roomId: number, hour: number) {
-    const dateTime = this.dateTimeUtils.createDateTimeString(this.currentDate, hour);
-    const key = `${roomId}--${dateTime}`;
-    if (this.selectedSlot.has(key)) {
-      this.selectedSlot.delete(key);
-    } else {
-      this.selectedSlot.add(key);
-    }
-    console.log(key);
+        const dateTime = this.dateTimeUtils.createDateTimeString(this.currentDate, hour);
+        const key = `${roomId}--${dateTime}`;
+        if (this.selectedSlot.has(key)) {
+          this.selectedSlot.delete(key);
+        } else {
+          this.selectedSlot.add(key);
+        }
+        console.log(key);
   }
 
   get filteredRooms() {
