@@ -22,7 +22,7 @@ export class AppComponent {
         const currentUrl = (event as NavigationEnd).urlAfterRedirects;
 
         if (currentUrl.includes('dashboard')) {
-          this.textService.setText('Minu andmed');
+          this.textService.setText('Minu andmed ja broneeringud');
         } else if (currentUrl.includes('booking')) {
           this.textService.setText('Sinu broneering:');
         } else if (currentUrl.includes('confirmation')) {

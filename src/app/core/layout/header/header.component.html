@@ -12,7 +12,7 @@
       }
       @if(authService.isLoggedIn()){
         <a>Tere, {{ user?.firstName }}!</a>
-        <a routerLink="/dashboard">Minu andmed</a>
+        <a routerLink="/dashboard">Minu konto</a>
         <button (click)="logout()" class="logout-btn">Logi välja</button>
       }
       </div>
