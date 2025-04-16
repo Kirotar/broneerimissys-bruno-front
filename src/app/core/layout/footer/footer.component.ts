@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VERSION} from '../../../../version';
+import { VERSION, BUILD_TIMESTAMP } from '../../../../version';
 
 
 @Component({
@@ -10,5 +10,6 @@ import { VERSION} from '../../../../version';
 })
 export class FooterComponent {
   version = VERSION;
+  buildTime = BUILD_TIMESTAMP;
 
 }
