@@ -6,6 +6,8 @@ import {UserService} from '../../user/user.service';
 import {FormsModule} from '@angular/forms';
 import {BookingService} from '../booking.service';
 import {MainCalendarComponent} from '../../home/components/main-calendar/main-calendar.component';
+import {BookingTransferService} from '../booking-transfer.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-booking-page',
@@ -13,7 +15,8 @@ import {MainCalendarComponent} from '../../home/components/main-calendar/main-ca
     RouterLinkActive,
     RouterLink,
     FormsModule,
-    MainCalendarComponent
+    MainCalendarComponent,
+    DatePipe
   ],
   templateUrl: './booking-page.component.html',
   styleUrls: ['./booking-page.component.scss', '../../../../../styles.scss']
@@ -22,22 +25,16 @@ export class BookingPageComponent implements OnInit{
   bookings: Booking[] = [];
   user: User | null = null;
   status: Boolean | undefined;
+  bookingsStringified: string = '';
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private bookingService: BookingService) {}
+  constructor(private route: ActivatedRoute, private userService: UserService, private bookingService: BookingService,
+              private bookingTransferService: BookingTransferService) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['bookings']) {
-        try {
-          this.bookings = JSON.parse(params['bookings']);
-        } catch (error) {
-          console.error('Error parsing bookings:', error);
-        }
-      }
-    });
-
+    this.bookings = this.bookingTransferService.getBookings();
     this.fetchUserInfo();
   }
+
 
   fetchUserInfo(){
     this.userService.fetchUserInfo().subscribe((data: User) => {

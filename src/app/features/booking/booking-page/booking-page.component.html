@@ -8,14 +8,18 @@
 
     <label> Broneeringud</label>
     @for (booking of bookings; track bookings) {
-      <p>{{ booking.roomId }}, {{ booking.startTime }} - {{ booking.endTime }}</p>
+      <p>{{ booking.roomId }}, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
     }
     <label for="participants">Osalejate arv</label>
     <input id="participants" type="number" placeholder="Sisesta osalejate arv" required>
   </form>
   <div class="button-container">
-    <button type="submit" class="book-button" [routerLink]="['/confirmation']" routerLinkActive="active"
-            [ariaCurrentWhenActive]="'page'">Maksma
+    <button   type="submit"
+              class="book-button"
+              [routerLink]="['/confirmation']"
+              [queryParams]="{ bookings: bookingsStringified }"
+              routerLinkActive="active"
+              [ariaCurrentWhenActive]="'page'">Maksma
     </button>
   </div>
 </div>

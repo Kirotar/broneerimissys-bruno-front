@@ -13,22 +13,9 @@ export class BookingService {
   constructor(private http: HttpClient) {
   }
 
-  saveBooking(booking: Booking[]){
-    console.log("Sending booking:", booking);
-    this.http.post<Booking>(`${this.apiUrl}booking/temp-booking`, booking, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    }).subscribe(response => {
-      console.log("Booking response:", response);
-    });
-/*
-  saveBooking(booking: Booking[]){
-
-    this.http.post<Booking[]>(`${this.apiUrl}booking/temp-booking`, booking);
-*/
+  saveBooking(booking: Booking[]) {
+    this.http.post<Booking>(`${this.apiUrl}booking/temp-booking`, booking).subscribe();
   }
-
 
   payForBooking(): Observable<boolean>{
     return this.http.get<boolean>(`${this.apiUrl}payment/status`);
