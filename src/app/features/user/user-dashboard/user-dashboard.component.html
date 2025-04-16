@@ -9,6 +9,8 @@
     </div>
   </div>
 
+  <h1>Minu andmed</h1>
+
   <div class="form-grid">
     <div class="form-group">
       <label class="required">Email</label>
@@ -20,17 +22,17 @@
       <input type="text" placeholder="">
       <div class="helper-text">Palun sisesta telefoninumber koos riigikoodiga</div>
     </div>
-    </div>
+  </div>
 
-    <div class="toggle-container">
-      <label class="toggle">
-        <input type="checkbox" [checked]="showPasswordFields" (change)="togglePasswordFields()">
-        <span class="slider"></span>
-      </label>
-      <span>Soovin luua sisselogimiseks salasõna või muuta olemasolevat</span>
-    </div>
+  <div class="toggle-container">
+    <label class="toggle">
+      <input type="checkbox" [checked]="showPasswordFields" (change)="togglePasswordFields()">
+      <span class="slider"></span>
+    </label>
+    <span>Soovin luua sisselogimiseks salasõna või muuta olemasolevat</span>
+  </div>
 
-@if(showPasswordFields){
+  @if (showPasswordFields) {
     <div class="form-grid">
       <div class="form-group">
         <label class="required">Salasõna</label>
@@ -42,17 +44,37 @@
         <input type="text" placeholder="">
       </div>
     </div>
-}
-    <div class="toggle-container">
-      <label class="toggle">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-      <span>Loobu teenusest</span>
-    </div>
-
-    <div class="buttons">
-      <button class="btn btn-secondary"> <a href="/">Tagasi pealehele</a></button>
-      <button class="btn btn-primary">Salvesta</button>
-    </div>
+  }
+  <div class="toggle-container">
+    <label class="toggle">
+      <input type="checkbox">
+      <span class="slider"></span>
+    </label>
+    <span>Loobu teenusest</span>
   </div>
+
+  <h1>Minu broneeringud</h1>
+  @for (booking of currentBookings; track booking.bookingId) {
+    <p>{{ booking.roomName }}, {{booking.roomFloor}}. korrus, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
+  }
+  <div class="toggle-container">
+    <label class="toggle">
+      <input type="checkbox" [checked]="showExpiredBookings" (change)="toggleExpiredBookings()">
+      <span class="slider"></span>
+    </label>
+    <span>Näita varasemaid broneeringuid</span>
+  </div>
+
+  @if (showExpiredBookings) {
+    <div>
+      @for (booking of expiredBookings; track booking.bookingId) {
+        <p>{{ booking.roomName }},  {{booking.roomFloor}}. korrus, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
+      }
+    </div>
+  }
+
+  <div class="buttons">
+    <button class="btn btn-secondary"><a href="/">Tagasi pealehele</a></button>
+    <button class="btn btn-primary">Salvesta</button>
+  </div>
+</div>
