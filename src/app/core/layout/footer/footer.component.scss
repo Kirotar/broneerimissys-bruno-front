@@ -56,6 +56,14 @@ hr {
   font-size: 14px;
 }
 
+.version-info {
+  font-size: 0.75rem;
+  color: gray;
+  margin-top: 1em;
+  display: block;
+  text-align: right;
+}
+
 @media (max-width: 768px) {
   .bottom-bar {
     flex-direction: column;
