@@ -12,16 +12,14 @@
     }
     <label for="participants">Osalejate arv</label>
     <input id="participants" type="number" placeholder="Sisesta osalejate arv" required>
+    <div class="button-container">
+      <button   type="submit"
+                class="book-button"
+                >Maksma
+      </button>
+    </div>
   </form>
-  <div class="button-container">
-    <button   type="submit"
-              class="book-button"
-              [routerLink]="['/confirmation']"
-              [queryParams]="{ bookings: bookingsStringified }"
-              routerLinkActive="active"
-              [ariaCurrentWhenActive]="'page'">Maksma
-    </button>
-  </div>
+
 </div>
 
 <hr>

@@ -1,5 +1,5 @@
-import {Component, OnInit, signal} from '@angular/core';
-import {ActivatedRoute, RouterLink, RouterLinkActive} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import { Booking} from '../booking.model';
 import {User} from '../../user/user.model';
 import {UserService} from '../../user/user.service';
@@ -8,12 +8,12 @@ import {BookingService} from '../booking.service';
 import {MainCalendarComponent} from '../../home/components/main-calendar/main-calendar.component';
 import {BookingTransferService} from '../booking-transfer.service';
 import {DatePipe} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-page',
   imports: [
-    RouterLinkActive,
-    RouterLink,
+
     FormsModule,
     MainCalendarComponent,
     DatePipe
@@ -28,7 +28,7 @@ export class BookingPageComponent implements OnInit{
   bookingsStringified: string = '';
 
   constructor(private route: ActivatedRoute, private userService: UserService, private bookingService: BookingService,
-              private bookingTransferService: BookingTransferService) {}
+              private bookingTransferService: BookingTransferService, private router: Router) {}
 
   ngOnInit() {
     this.bookings = this.bookingTransferService.getBookings();
@@ -42,10 +42,18 @@ export class BookingPageComponent implements OnInit{
     });
   }
   onSubmitPay(){
-    this.bookingService.payForBooking().subscribe((data: Boolean) => {
+    this.bookingService.payForBooking(this.bookings).subscribe((data: boolean) => {
       this.status = data;
+      if (data === true) {
+        this.router.navigate(['/confirmation'], {
+          queryParams: { bookings: this.bookingsStringified }
+        });
+      } else {
+        this.router.navigate(['/payment-failed'], {
+          queryParams: { bookings: this.bookingsStringified }
+        });
+      }
     });
-
   }
 
 }

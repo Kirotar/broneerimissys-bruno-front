@@ -1,19 +1,26 @@
 <div class="form-container">
   <table>
-  <tr>
-    <th>Sinu andmed</th>
-    <td></td>
-  </tr>
-  <tr>
-    <th>Broneeringud</th>
-    <td></td>
-  </tr>
-  <tr>
-    <th>Osalejate arv</th>
-    <td></td>
-  </tr>
+    <tr>
+      <th>Nimi</th>
+      <td>{{ user?.firstName }} {{ user?.lastName }}</td>
+    </tr>
+    <tr>
+      <th>E-mail/kasutajanimi</th>
+      <td>{{ user?.email }}</td>
+    </tr>
+    <tr>
+      <th>Broneeringud</th>
+      <td>
+        @for (booking of bookings; track bookings) {
+      <p>{{ booking.roomId }}, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
+      }
+    </tr>
+    <tr>
+      <th>Osalejate arv</th>
+      <td></td>
+    </tr>
   </table>
-  <p>Broneeringuid saad tühistada oma kontol.</p>
+  <h3>Broneeringuid saad tühistada oma kontol.</h3>
 </div>
 
 <div class="text-container">

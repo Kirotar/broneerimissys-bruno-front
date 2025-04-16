@@ -23,9 +23,11 @@ export class AppComponent {
 
         if (currentUrl.includes('dashboard')) {
           this.textService.setText('Minu andmed ja broneeringud');
-        } else if (currentUrl.includes('booking')) {
-          this.textService.setText('Sinu broneering:');
         } else if (currentUrl.includes('confirmation')) {
+          this.textService.setText('Broneering kinnitatud!');
+        } else if (currentUrl.includes('failed')) {
+          this.textService.setText('Broneering ebaõnnestus!');
+        } else if (currentUrl.includes('booking')) {
           this.textService.setText('Sinu broneering:');
         } else {
           this.textService.setText('Tere tulemast broneerimisüsteemi BRuNO!');

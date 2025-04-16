@@ -17,7 +17,7 @@ export class BookingService {
     this.http.post<Booking>(`${this.apiUrl}booking/temp-booking`, booking).subscribe();
   }
 
-  payForBooking(): Observable<boolean>{
-    return this.http.get<boolean>(`${this.apiUrl}payment/status`);
+  payForBooking(booking: Booking[]): Observable<boolean>{
+    return this.http.post<boolean>(`${this.apiUrl}payment/status`, booking);
   }
 }
