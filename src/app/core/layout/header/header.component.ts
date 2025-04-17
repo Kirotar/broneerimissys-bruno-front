@@ -30,8 +30,6 @@ export class HeaderComponent {
     this.router.navigate(['/login']);
   }
 
-
-
   fetchUserInfo(){
     this.userService.fetchUserInfo().subscribe((data: User) => {
       this.user = data;

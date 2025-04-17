@@ -1,3 +1,13 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+}
+
+.header-container h2 {
+  color: #F4633A;
+  margin-top:50px;
+}
+
 .form-container {
   max-width: 800px;
   margin: 50px auto;
@@ -17,6 +27,8 @@
   margin-bottom: 8px;
   color: #090688;
   text-align: left;
+  padding-right: 10px;
+  width: 30%;
 }
 
 .form-container h3{

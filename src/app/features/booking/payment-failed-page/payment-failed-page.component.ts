@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-payment-failed-page',
   imports: [],
   templateUrl: './payment-failed-page.component.html',
-  styleUrl: './payment-failed-page.component.scss'
+  styleUrls: ['./payment-failed-page.component.scss', '../styles.scss']
 })
 export class PaymentFailedPageComponent {
 

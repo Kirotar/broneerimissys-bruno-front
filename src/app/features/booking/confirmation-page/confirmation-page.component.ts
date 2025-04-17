@@ -12,7 +12,7 @@ import {DatePipe} from '@angular/common';
     DatePipe
   ],
   templateUrl: './confirmation-page.component.html',
-  styleUrl: './confirmation-page.component.scss'
+  styleUrls: ['./confirmation-page.component.scss', '../styles.scss']
 })
 export class ConfirmationPageComponent {
   user: User | null = null;

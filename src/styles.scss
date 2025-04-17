@@ -5,11 +5,30 @@
 body {
   background-color: #f6f8f5;
   color: #090688;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/*p, h1, h2, h3, h4, h5, h6, span, li, a {
-  margin-left: 50px;
-}*/
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content, router-outlet {
+  display: block;
+  flex: 1;
+}
+
+app-footer {
+  margin-top: auto;
+}
 
 header {
   background-color: white;
@@ -133,4 +152,20 @@ height:200px;
 .form input::placeholder {
   color: #090688;
   opacity: 0.6;
+}
+
+.light-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border-width: 1px;
+  color: #090688;
+  opacity: 100%;
+  cursor: pointer;
+  border-radius: 60px;
+  border-color: #090688;
+}
+
+.light-button:hover {
+  background-color: #090688;
+  color: white;
 }
