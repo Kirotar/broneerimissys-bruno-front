@@ -16,6 +16,26 @@
   overflow: hidden;
   margin-top: 40px;
 }
+.wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  width: 70%;
+  padding: 20px;
+}
+
+.column {
+  flex: 1;
+}
+
+.bullet-list li {
+  margin-bottom: 8px;
+}
+
 
 h2, h3, p {
   color: #090688;

@@ -1,6 +1,23 @@
 <div class="infobar-image-container">
   <img src="/raamaturiiul.jpg" alt="library" class="infobar-image">
 </div>
+<div class="wrapper">
+<div class="container">
+  <div class="column">
+    <ul class="bullet-list">
+      <h3>Ühe broneeringu pikkus on 1-3h.</h3>
+      <h3>Korraga saab olla kuni 10 aktiivset broneeringut.</h3>
+      <h3>Korraga saab olla üks aktiivne tasuta broneering.</h3>
+    </ul>
+  </div>
+  <div class="column">
+    <ul class="bullet-list">
+      <li>5min enne broneeringu lõppu säti ruum korda ning vabasta järgmiseks broneeringuks!</li>
+      <li>Juhul kui ruum ei ole puhas, teavita töötajat.</li>
+    </ul>
+  </div>
+</div>
+</div>
 
 <div class="info-container">
   <div class="infobar-text">
@@ -26,14 +43,19 @@
       <button>Vaata ruume</button>
       <p>Või tee päring:</p>
       <button [routerLink]="['/query']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
-        Tee päring</button>
+        Tee päring
+      </button>
     </div>
   </div>
 
-  <div class="info-item"><div class="text"><h3>Haridusprogrammid</h3>
-    <p>Hariduskeskuses on võimalik broneerida haridusprogramme rühmadele.</p>
-    <a href="https://www.rara.ee/programmid/"><button >Tee päring</button></a>
-  </div>
+  <div class="info-item">
+    <div class="text"><h3>Haridusprogrammid</h3>
+      <p>Hariduskeskuses on võimalik broneerida haridusprogramme rühmadele.</p>
+      <a href="https://www.rara.ee/programmid/">
+        <a href="https://www.rara.ee/programmid/">
+        <button>Vaata lähemalt</button></a>
+      </a>
+    </div>
   </div>
   <div class="info-item"><img src="/edu_examp.png" alt="Haridusprogrammid"></div>
 
