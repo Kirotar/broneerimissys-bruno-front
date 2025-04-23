@@ -16,7 +16,9 @@
         {{ floor }}. korrus <i class="arrow down"></i>
       </button>
     }
-    <button>Vaata päringuga broneeritavaid ruume</button>
+    <a [routerLink]="['query-rooms']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+      <button>Vaata päringuga broneeritavaid ruume</button>
+    </a>
   </div>
 
   @for (room of filteredRooms; track room.id) {
@@ -41,8 +43,6 @@
   <button class="book-button" (click)="bookRoom()" appBookingButton [bookings]="bookings">Broneeri
   </button>
 </div>
-
-
 
 
 <!--@if ("loading") {

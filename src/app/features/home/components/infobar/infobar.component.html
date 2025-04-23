@@ -40,9 +40,9 @@
         ruume suuremate ja väiksemate sündmuste korraldamiseks.
         Vaata ruume, mida on võimalik päringuga broneerida:
       </p>
-      <button>Vaata ruume</button>
+      <button [routerLink]="['query-rooms']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">Vaata ruume</button>
       <p>Või tee päring:</p>
-      <button [routerLink]="['/query']" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+      <button (click)="openForm()">
         Tee päring
       </button>
     </div>

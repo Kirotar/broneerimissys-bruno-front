@@ -5,13 +5,14 @@ import {ApiService} from '../../../../core/services/api.service';
 import {BookingButtonDirective} from '../../../../shared/booking-button.directive';
 import {Booking} from '../../../booking/booking.model';
 import {DateTimeUtilsService} from '../../../../shared/date-time.utils.service';
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 export type BookingMap = Omit<Booking, "roomId">;
 
 @Component({
   selector: 'app-main-calendar',
   standalone: true,
-  imports: [CommonModule, BookingButtonDirective],
+  imports: [CommonModule, BookingButtonDirective, RouterLinkActive, RouterLink],
   templateUrl: './main-calendar.component.html',
   styleUrls: ['./main-calendar.component.scss', '../styles.scss']
 })

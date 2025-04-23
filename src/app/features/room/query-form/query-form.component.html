@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>Päringu vorm</h2>
+
+<mat-dialog-content>
+  @if (!isSubmitted) {
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Ees- ja perekonnanimi</mat-label>
+        <input matInput formControlName="name">
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>
+            Nimi on nõutud
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>E-post</mat-label>
+        <input matInput formControlName="email" type="email">
+        @if (form.get('email')?.hasError('required')) {
+          <mat-error>
+            E-post on nõutud
+          </mat-error>
+        }
+        @if (form.get('email')?.hasError('email')) {
+          <mat-error>
+            Palun sisestage korrektne meiliaadress
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Telefon</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Organisatsioon/ettevõte</mat-label>
+        <input matInput formControlName="organisation">
+        @if (form.get('organisation')?.hasError('required')) {
+          <mat-error>
+            Organisatsioon/ettevõte on nõutud
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Vali kuupäev</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Inimeste arv</mat-label>
+        <input matInput type="number" min="0" formControlName="numberOfPeople">
+        <div class="number-buttons" matSuffix>
+          <button mat-icon-button type="button" (click)="decrementPeople()" [disabled]="form.get('numberOfPeople')?.value <= 0">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button mat-icon-button type="button" (click)="incrementPeople()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Kommentaarid</mat-label>
+        <textarea matInput formControlName="message" rows="4"></textarea>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="agreeTerms">Kinnitan, et olen tutvunud Eesti Rahvusraamatukogu isikuandmete töötlemise korraga.</mat-checkbox>
+    </form>
+  }
+
+  @if (isSubmitted) {
+    <div class="success-message">
+      <p>Tänan! Teie päring on teele läinud!</p>
+      <p>Võtame teiega ühendust kolme tööpäeva jooksul.</p>
+    </div>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  @if (!isSubmitted) {
+    <ng-container>
+      <button mat-button (click)="onCancel()">Tühista</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid">Saada</button>
+    </ng-container>
+  }
+
+  @if (isSubmitted) {
+    <button mat-button (click)="dialogRef.close(form.value)">Sulge aken</button>
+  }
+</mat-dialog-actions>

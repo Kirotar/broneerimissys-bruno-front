@@ -26,9 +26,10 @@
       <p><strong>Korrus:</strong> {{ room.floor }}</p>
       <p><strong>Vahendid:</strong> {{ room.equipment }}</p>
       <p><strong>Hind:</strong> {{ room.price }} €</p>
-      <p><strong>Märksõnad:</strong> {{ room.keywords }}</p>
-      <button class="book-button">Broneeri</button>
-      <button class="book-button">Vaata täpsemalt</button>
+      <p><strong>Märksõnad:</strong> {{ room.keywords }}
+        <a [routerLink]="['/room', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+      <button class="book-button">Vaata lähemalt</button>
+        </a>
     </div>
   }
     }
