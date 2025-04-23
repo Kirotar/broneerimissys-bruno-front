@@ -27,6 +27,15 @@ export class ApiService {
     );
   }
 
+  getQueryRooms(){
+    return this.http.get(`${this.apiUrl}rooms/get-query-rooms`).pipe(
+      catchError(error => {
+        console.error('Error ruumide laadimisel:', error);
+        return throwError(() => new Error('Ei saanud ruume laadida. Proovi hiljem uuesti.'));
+      })
+    );
+  }
+
   getBookableRooms() {
     return this.http.get(`${this.apiUrl}rooms/get-bookable-rooms`).pipe(
       catchError(error => {

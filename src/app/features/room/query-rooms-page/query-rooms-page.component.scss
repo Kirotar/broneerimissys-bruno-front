@@ -1,0 +1,10 @@
+.rooms-container {
+  background: none;
+}
+
+.room-grid{
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  max-width: 1300px;
+  flex: 1;
+  margin-left: 20px;
+}

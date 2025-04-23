@@ -1,0 +1,23 @@
+<div class="rooms-container">
+  <div class="room-grid">
+    @for (room of rooms; track room.id) {
+      <div class="room-card">
+        <img src="/conference_example.png" alt="Sündmused">
+        <a [routerLink]="['/room', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">
+          {{ room.roomName }}
+        </a>
+        <p><strong>Ruumi number:</strong> {{ room.roomNumber }}</p>
+        <p><strong>Mahutavus:</strong> {{ room.capacity }} inimest</p>
+        <p><strong>Korrus:</strong> {{ room.floor }}</p>
+        <p><strong>Vahendid:</strong> {{ room.equipment }}</p>
+        <p><strong>Hind:</strong> {{ room.price }} €</p>
+        <p><strong>Märksõnad:</strong> {{ room.keywords }}</p>
+          <button class="book-button" [routerLink]="['/room', room.id]" routerLinkActive="active" [ariaCurrentWhenActive]="'page'">Vaata lähemalt</button>
+          <button class="book-button" (click)="openForm()">
+            Tee päring
+          </button>
+      </div>
+    }
+
+  </div>
+</div>

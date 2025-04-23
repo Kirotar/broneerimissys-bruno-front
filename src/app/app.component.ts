@@ -29,6 +29,8 @@ export class AppComponent {
           this.textService.setText('Broneering ebaõnnestus!');
         } else if (currentUrl.includes('booking')) {
           this.textService.setText('Sinu broneering:');
+        } else if (currentUrl.includes('query-rooms')) {
+          this.textService.setText('Päringuga broneeritavad ruumid:');
         } else {
           this.textService.setText('Tere tulemast broneerimisüsteemi BRuNO!');
         }
