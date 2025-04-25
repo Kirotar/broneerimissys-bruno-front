@@ -1,39 +1,62 @@
+<app-booking-timer></app-booking-timer>
+
 <div class="booking-form-container">
   <form class="form" (ngSubmit)="onSubmitPay()">
-    <label>Sinu andmed</label>
-    <p>
-      {{ user?.firstName }} {{ user?.lastName }}<br>
-      {{ user?.email }}<br>
-      NB! Veendu andmete õigsuses!</p>
 
-    <label> Broneeringud</label>
-    @for (booking of bookings; track bookings) {
-      <p>{{ booking.roomId }}, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
+    <h3 class="section-title">Sinu andmed</h3>
+    <div class="user-info">
+      <p>
+        {{ user?.firstName }} {{ user?.lastName }}<br/>
+        {{ user?.email }}<br/>
+        <strong>NB!</strong> Veendu andmete õigsuses!
+      </p>
+    </div>
+
+    <div class="section-title"><h3>Broneeringud</h3>
+      <p>Viitenumber: {{ bookings[0]?.transactionRef }}</p></div>
+
+    @for (booking of bookings; track booking) {
+      <div class="booking-card">
+        <p><strong>Ruum:</strong> {{ booking.roomId }} – {{ booking.roomName }}</p>
+        <p><strong>Hind:</strong> {{ booking.roomPrice }} €</p>
+        <p><strong>Periood:</strong> {{ booking.startTime | date: 'MMM d, y HH:mm' }}
+          – {{ booking.endTime | date: 'HH:mm' }}</p>
+
+        <label for="participants-{{booking.transactionRef}}">Osalejate arv</label>
+        <input
+          id="participants-{{booking.transactionRef}}"
+          type="number"
+          placeholder="Sisesta osalejate arv"
+        />
+
+        <button type="button" (click)="deleteBooking(booking)" class="delete-button">Kustuta broneering</button>
+      </div>
     }
-    <label for="participants">Osalejate arv</label>
-    <input id="participants" type="number" placeholder="Sisesta osalejate arv" required>
+
+    @if (bookings.length > 0) {
+      <div class="total-price">
+        <strong>Kokku: {{ getTotalPrice() }} €</strong>
+      </div>
+    }
+
     <div class="button-container">
-      <button   type="submit"
-                class="book-button"
-                >Maksma
-      </button>
+      <button type="submit" class="book-button">Maksma</button>
     </div>
   </form>
-
 </div>
 
-<hr>
-
 <div class="header-row">
-  <h2>SOOVID LISADA BRONEERINGU?</h2></div>
+  <h2>SOOVID LISADA BRONEERINGU?</h2>
+</div>
 <app-main-calendar></app-main-calendar>
 
 <div class="booking-info-container">
-  <p>Korraga on võimalik broneerida ruumi <b>1-3 tunniks</b>.</p>
+  <p>Korraga on võimalik broneerida ruumi <b>1–3 tunniks</b>.</p>
   <p>Ühel kasutajal saab olla korraga <b>10 aktiivset broneeringut</b>.</p>
   <p>Pärast broneeringu alustamist on aega 10 minutit, et broneering lõpule viia.</p>
 </div>
+
 <div class="booking-request-info-container">
   <p>Kui soovid teha broneeringut, mis neile kriteeriumitele ei vasta, siis kasuta PÄRINGU vormi.</p>
-  <button class="book-button">Päring</button>
+  <button class="book-button" (click)="openForm()">Päring</button>
 </div>

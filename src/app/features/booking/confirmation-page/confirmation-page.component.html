@@ -1,38 +1,53 @@
 <div class="header-container">
-<h2>Makse õnnestus!</h2>
+  <h2>Makse õnnestus!</h2>
+</div>
+<div class="ref-container">
+<p>Tehingu viitenumber: {{ bookings[0]?.transactionRef }}</p>
 </div>
 
-<div class="form-container">
-  <table>
-    <tr>
-      <th>Nimi</th>
-      <td>{{ user?.firstName }} {{ user?.lastName }}</td>
-    </tr>
-    <tr>
-      <th>E-mail/kasutajanimi</th>
-      <td>{{ user?.email }}</td>
-    </tr>
-    <tr>
-      <th>Broneeringud</th>
-      <td>
-        @for (booking of bookings; track bookings) {
-      <p>{{ booking.roomId }}, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
-      }
-    </tr>
-    <tr>
-      <th>Osalejate arv</th>
-      <td></td>
-    </tr>
-  </table>
-  <h3>Broneeringuid saad tühistada oma kontol.</h3>
+<div class="booking-form-container">
+  <form class="form">
+
+    <h3 class="section-title">Sinu andmed</h3>
+    <div class="user-info">
+      <p>
+        {{ user?.firstName }} {{ user?.lastName }}<br/>
+        {{ user?.email }}<br/>
+      </p>
+    </div>
+
+    <h3 class="section-title">Broneeringud
+    </h3>
+
+    @for (booking of bookings; track booking) {
+      <div class="booking-card">
+        <p><strong>Ruum:</strong> {{ booking.roomId }} – {{ booking.roomName }}</p>
+        <p><strong>Hind:</strong> {{ booking.roomPrice }} €</p>
+        <p><strong>Osalejate arv:</strong></p>
+        <p><strong>Periood:</strong> {{ booking.startTime | date: 'MMM d, y HH:mm' }}
+          – {{ booking.endTime | date: 'HH:mm' }}</p>
+        <p><strong>PIN:</strong> {{ booking.pin }}</p>
+      </div>
+    }
+
+
+    @if (bookings.length > 0) {
+      <div class="total-price">
+        <strong>Makstud: {{ getTotalPrice() }} €</strong>
+      </div>
+    }
+
+  </form>
 </div>
 
 <div class="text-container">
+  <h3>Broneeringuid saad tühistada oma kontol!</h3>
+
   <p>Paari minuti jooksul saabub sinu e-mailile ja telefonile PIN, mida saad broneeritud
     ajal kasutada ukse avamiseks.</p>
   <p>Head külastust!
   </p>
 
-  <button class="light-button">Tagasi esilehele</button>
+  <button class="light-button"><a href="/">Tagasi esilehele</a></button>
 </div>
 

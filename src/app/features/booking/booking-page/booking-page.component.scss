@@ -1,45 +1,70 @@
 .booking-form-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 50px auto;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  .button-container{
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.booking-form-container form {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  grid-gap: 15px;
   width: 100%;
 }
 
-.booking-form-container label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #090688;
-  text-align: right;
+.section-title {
+  display: block;
+  width: 100%;
+  font-size: 1.4em;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
-.booking-form-container input{
-  padding: 10px;
+.user-info p {
+  background-color: #f1f1f1;
+  padding: 15px;
+}
+
+.booking-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 16px;
   margin-bottom: 16px;
-  width: 90%;
 }
 
-
-.booking-form-container p {
-  margin-bottom: 16px;
-  color: #555;
+.booking-card p {
+  margin: 4px 0;
 }
 
-.booking-form-container button {
+.booking-card input {
+  margin-top: 8px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
+.delete-button {
+  background-color: #F4633A;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.total-price {
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
+  }
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .booking-info-container {
@@ -66,19 +91,11 @@
     padding: 15px;
   }
 
-  .booking-form-container form {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .booking-form-container label {
-    text-align: left;
-  }
-
-  .booking-form-container input,
-  .booking-form-container textarea {
-    padding: 8px;
+  .booking-card input {
     width: 100%;
   }
 
+  .total-price {
+    text-align: left;
+  }
 }
