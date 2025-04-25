@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QueryFormComponent } from './query-form.component';
+import { BookingTimerComponent } from './booking-timer.component';
 
-describe('QueryFormComponent', () => {
-  let component: QueryFormComponent;
-  let fixture: ComponentFixture<QueryFormComponent>;
+describe('BookingTimerComponent', () => {
+  let component: BookingTimerComponent;
+  let fixture: ComponentFixture<BookingTimerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QueryFormComponent]
+      imports: [BookingTimerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(QueryFormComponent);
+    fixture = TestBed.createComponent(BookingTimerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

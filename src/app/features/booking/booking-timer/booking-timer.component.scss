@@ -1,0 +1,26 @@
+.timer-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+  padding: 8px 12px 8px 50px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+.timer-label {
+  font-weight: 500;
+}
+.timer-display {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
