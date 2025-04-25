@@ -54,8 +54,10 @@
   </div>
 
   <h1>Minu broneeringud</h1>
-  @for (booking of currentBookings; track booking.bookingId) {
-    <p>{{ booking.roomName }}, {{booking.roomFloor}}. korrus, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
+  @for (booking of currentBookings; track booking.bookingId; let i = $index) {
+    <p>{{ i + 1 }}. {{ booking.roomName }}, {{booking.roomFloor}}. korrus, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}},
+    PIN: {{booking.pin}}, makstud: {{booking.price}}€, viitenumber: {{booking.transactionRef}}    <button class="delete-button">Tühista</button>
+    </p>
   }
   <div class="toggle-container">
     <label class="toggle">
@@ -68,8 +70,8 @@
   @if (showExpiredBookings) {
     <div>
       @for (booking of expiredBookings; track booking.bookingId) {
-        <p>{{ booking.roomName }},  {{booking.roomFloor}}. korrus, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}}</p>
-      }
+        <p>{{ booking.roomName }}, {{booking.roomFloor}}. korrus, {{ booking.startTime | date:'MMM d, y HH:mm' }} - {{ booking.endTime | date:'HH:mm'}},
+          makstud: {{booking.price}}€, viitenumber: {{booking.transactionRef}}</p>      }
     </div>
   }
 
