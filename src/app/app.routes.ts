@@ -6,9 +6,9 @@ import {FrontPageComponent} from './features/home/front-page/front-page.componen
 import {RegistrationPageComponent} from './core/auth/registration-page/registration-page.component';
 import {ConfirmationPageComponent} from './features/booking/confirmation-page/confirmation-page.component';
 import {UserDashboardComponent} from './features/user/user-dashboard/user-dashboard.component';
-import {QueryFormComponent} from './features/booking/query-form/query-form.component';
 import {PaymentFailedPageComponent} from './features/booking/payment-failed-page/payment-failed-page.component';
 import {QueryRoomsPageComponent} from './features/room/query-rooms-page/query-rooms-page.component';
+import {QueryFormComponent} from './features/room/query-form/query-form.component';
 
 export const routes: Routes = [
   { path: '', component: FrontPageComponent },

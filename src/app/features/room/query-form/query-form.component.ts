@@ -28,66 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   templateUrl: './query-form.component.html',
-  //styleUrl: './query-form.component.scss',
-  styles: [`
-    mat-dialog-content {
-      min-width: 300px;
-      max-width: 500px;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 8px 0;
-    }
-
-    mat-form-field {
-      width: 100%;
-    }
-
-    .number-buttons {
-      display: flex;
-      align-items: center;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    mat-checkbox {
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-
-    .success-message {
-      text-align: center;
-      padding: 24px 16px;
-    }
-
-    .success-message p {
-      margin: 16px 0;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .success-message p:first-child {
-      font-weight: 500;
-      font-size: 18px;
-      color: #F4633A;
-    }
-
-    mat-dialog-actions {
-      padding: 16px 0;
-    }
-
-    button:not(:last-child) {
-      margin-right: 8px;
-    }
-  `]
+  styleUrl: './query-form.component.scss',
 })
 export class QueryFormComponent {
   form: FormGroup;
