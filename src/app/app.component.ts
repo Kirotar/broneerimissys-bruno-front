@@ -32,7 +32,7 @@ export class AppComponent {
         } else if (currentUrl.includes('query-rooms')) {
           this.textService.setText('Päringuga broneeritavad ruumid:');
         } else {
-          this.textService.setText('Tere tulemast broneerimisüsteemi BRuNO!');
+          this.textService.setText('Tere tulemast broneerimissüsteemi BRuNO!');
         }
       });
   }
