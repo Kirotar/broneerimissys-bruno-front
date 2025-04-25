@@ -18,4 +18,13 @@ export class BookingTransferService {
   clearBookings(): void {
     sessionStorage.removeItem(this.storageKey);
   }
+
+  getTransactionRef(): string | undefined {
+      const data = sessionStorage.getItem(this.storageKey);
+      if (!data) return undefined;
+
+      const parsed: Booking = JSON.parse(data);
+      return parsed.transactionRef;
+    }
+
 }
