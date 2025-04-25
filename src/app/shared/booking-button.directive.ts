@@ -23,16 +23,16 @@ export class BookingButtonDirective {
     const formattedBookings = this.bookings.map(booking => ({
       roomId: booking.roomId,
       startTime: booking.startTime,
-      endTime: booking.endTime
+      endTime: booking.endTime,
     }));
-    console.log(formattedBookings);
 
-    this.bookingService.saveBooking(formattedBookings);
+    this.bookingService.saveBooking(formattedBookings).add(() => {
+      if (formattedBookings.length > 0) {
+        this.router.navigate([this.bookingRoute]);
+      }
+    });
+
     this.bookingTransferService.setBookings(formattedBookings);
-
-    if (formattedBookings.length > 0) {
-      this.router.navigate([this.bookingRoute]);
-    }
   }
 }
 
