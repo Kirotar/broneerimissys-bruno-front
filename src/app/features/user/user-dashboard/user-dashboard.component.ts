@@ -8,7 +8,7 @@ import {DatePipe} from '@angular/common';
   selector: 'app-user-page',
   imports: [DatePipe],
   templateUrl: './user-dashboard.component.html',
-  styleUrl: './user-dashboard.component.scss'
+  styleUrls: ['./user-dashboard.component.scss', '../styles.scss']
 })
 export class UserDashboardComponent {
   user: User | null = null;
