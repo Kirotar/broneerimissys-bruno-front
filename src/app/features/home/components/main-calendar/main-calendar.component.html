@@ -40,8 +40,11 @@
       }
     </div>
   }
-  <button class="book-button" (click)="bookRoom()" appBookingButton [bookings]="bookings">Broneeri
+  <button class="book-button" (click)="bookRoom()">Kinnita valikud
   </button>
+  @if(isVisible){
+  <button class="book-button" appBookingButton [bookings]="bookings">Maksma
+  </button>}
 </div>
 
 

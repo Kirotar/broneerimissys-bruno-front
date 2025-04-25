@@ -37,6 +37,7 @@ export class MainCalendarComponent implements OnInit {
   error = '';
 
   roomBookings: Map<number, BookingMap[]> = new Map([]);
+  isVisible: boolean | undefined;
 
   constructor(private apiService: ApiService, protected dateTimeUtils: DateTimeUtilsService) {
     this.initializeDates();
@@ -133,6 +134,7 @@ export class MainCalendarComponent implements OnInit {
       alert("Üle kümne broneeringu ei saa teha!");
       return;
     }
+    this.isVisible=true;
   }
 
 
