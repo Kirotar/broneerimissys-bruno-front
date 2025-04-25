@@ -185,5 +185,19 @@ height:200px;
   color: white;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.delete-button{
+  background-color: #F4633A;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  margin: 10px;
+  border-radius: 45px;
+  cursor: pointer;
+}
+
+.delete-button:hover{
+  background-color: #ff0a00;
+}
+
+/*html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
